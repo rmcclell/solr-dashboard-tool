@@ -1,0 +1,26 @@
+<mat-toolbar>
+    <div fxLayout="row" fxLayoutAlign="start center" fxFill fxLayoutGap="10">
+        <div fxFlex="grow" fxLayoutAlign="space-between center">
+            <mat-button-toggle-group name="navMenu">
+                <mat-button-toggle routerLink="/home" routerLinkActive="active">
+                    <mat-icon>home</mat-icon>
+                    Home
+                </mat-button-toggle>
+                <mat-button-toggle routerLink="/dashboard" routerLinkActive="active">
+                    <mat-icon>dashboard</mat-icon>
+                    Dashboards
+                </mat-button-toggle>
+                <mat-button-toggle routerLink="/admin" routerLinkActive="active">
+                    <mat-icon>admin_panel_settings</mat-icon>
+                    Admin
+                </mat-button-toggle>
+            </mat-button-toggle-group>
+        </div>
+        <div fxFlex="auto" fxLayoutAlign="start center">
+            <button mat-raised-button [routerLink]="[{ outlets: { popup: ['settings'] } }]">
+                <mat-icon>settings</mat-icon>
+                Settings
+            </button>
+        </div>
+    </div>
+</mat-toolbar>
