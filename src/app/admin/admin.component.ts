@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+
+
 export interface PeriodicElement {
   name: string;
   position: number;
@@ -27,8 +30,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class AdminComponent implements OnInit {
 
-  displayedColumns = ['position', 'name', 'weight', 'symbol'];
+  columns: string[] = ['actions','position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
+  }
 
   constructor() { }
 

@@ -91,70 +91,60 @@
         
       <div fxLayout="column" fxLayoutAlign="start start" fxFill>
         <div fxFlex="60" style="width:100%">
-            <mat-card class="example-card">
-                <mat-card-header>
-                  <mat-card-title>Cats Dashboard
-                    <button mat-button (click)="sidenav.toggle()">
-                        <mat-icon *ngIf="opened">close_fullscreen</mat-icon>
-                        <mat-icon *ngIf="!opened">open_in_full</mat-icon>
-                        Toggle</button>
-                    <button mat-button>
-                        <mat-icon>restore_page</mat-icon>
-                        Refresh</button>
-                  </mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
-                        <div class="example-box" *ngFor="let timePeriod of timePeriods" cdkDrag>{{timePeriod}}</div>
-                    </div>
-                </mat-card-content>
-              </mat-card>
+            <mat-toolbar>
+                <span>Cats Dashboard</span>
+                <span class="example-spacer"></span>
+                <button mat-raised-button (click)="sidenav.toggle()">
+                    <mat-icon *ngIf="opened">close_fullscreen</mat-icon>
+                    <mat-icon *ngIf="!opened">open_in_full</mat-icon>
+                    Toggle</button>
+                <button mat-raised-button>
+                    <mat-icon>restore_page</mat-icon>
+                    Refresh</button>
+            </mat-toolbar>
+            <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
+                <div class="example-box" *ngFor="let timePeriod of timePeriods" cdkDrag>{{timePeriod}}</div>
+            </div>
         </div>
         <div fxFlex="40" style="width:100%">
-            <mat-card class="example-card">
-                <mat-card-header>
-                  <mat-card-title>Results
-                    <button mat-button>
-                        <mat-icon>restore_page</mat-icon>
-                        Refresh</button>
-                        <button mat-button>
-                            <mat-icon>save_alt</mat-icon>
-                            Export</button>
-                  </mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                    <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                        <!-- Position Column -->
-                        <ng-container matColumnDef="position">
-                          <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-                          <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-                        </ng-container>
-                      
-                        <!-- Name Column -->
-                        <ng-container matColumnDef="name">
-                          <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                          <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-                        </ng-container>
-                      
-                        <!-- Weight Column -->
-                        <ng-container matColumnDef="weight">
-                          <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-                          <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-                        </ng-container>
-                      
-                        <!-- Symbol Column -->
-                        <ng-container matColumnDef="symbol">
-                          <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-                          <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-                        </ng-container>
-                      
-                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-                      </mat-table>
-                </mat-card-content>
-              </mat-card>
+            <mat-toolbar>
+                <span>Results</span>
+                <span class="example-spacer"></span>
+                <button mat-raised-button>
+                    <mat-icon>restore_page</mat-icon>
+                    Refresh</button>
+                    <button mat-raised-button>
+                        <mat-icon>save_alt</mat-icon>
+                        Export</button>
+             </mat-toolbar>
+             <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                  <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                </ng-container>
               
-                
+                <!-- Name Column -->
+                <ng-container matColumnDef="name">
+                  <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                </ng-container>
+              
+                <!-- Weight Column -->
+                <ng-container matColumnDef="weight">
+                  <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+                </ng-container>
+              
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="symbol">
+                  <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+                </ng-container>
+              
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+              </mat-table>    
                     </div>
     </div>
       

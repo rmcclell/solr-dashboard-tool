@@ -43,7 +43,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class DashboardComponent implements OnInit {
 
   events: string[] = [];
-  opened: boolean;
+  opened: boolean = true;
   panelOpenState = false;
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;

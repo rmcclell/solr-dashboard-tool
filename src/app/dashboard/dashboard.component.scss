@@ -65,18 +65,14 @@ mat-table {
   .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   }
-  .example-card {
-    /*height: 100%;*/
-  }
   
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
-
   .example-chip-list {
     width: 100%;
   }
   mat-card {
     margin-bottom:10px;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
   }
