@@ -1,10 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import {PreferencesComponent} from './preferences/preferences.component';
+import {SolrIndexesComponent} from './solr-indexes/solr-indexes.component';
+import {DisplayComponent} from './display/display.component';
+
 @Component({
-  template: ''
+  template: '',
+  entryComponents: [
+    PreferencesComponent,
+    SolrIndexesComponent,
+    DisplayComponent
+
+  ]
 })
 export class SettingsEntryComponent {
 
@@ -25,7 +34,13 @@ export class SettingsEntryComponent {
 @Component({
   selector: 'app-settings',
   templateUrl: './settings.component.html',
-  styleUrls: ['./settings.component.scss']
+  styleUrls: ['./settings.component.scss'],
+  entryComponents: [
+    PreferencesComponent,
+    SolrIndexesComponent,
+    DisplayComponent
+
+  ]
 })
 export class SettingsComponent implements OnInit {
 

@@ -11,13 +11,19 @@ import { HeaderComponent } from './header/header.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { SettingsComponent } from './settings/settings.component';
+import { PreferencesComponent } from './settings/preferences/preferences.component';
+import { SolrIndexesComponent } from './settings/solr-indexes/solr-indexes.component';
+import { DisplayComponent } from './settings/display/display.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     NavMenuComponent,
-    SettingsComponent
+    SettingsComponent,
+    PreferencesComponent,
+    SolrIndexesComponent,
+    DisplayComponent
   ],
   imports: [
     BrowserModule,
