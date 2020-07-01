@@ -1,153 +1,151 @@
 <mat-sidenav-container class="container">
     <mat-sidenav #sidenav mode="side" [(opened)]="opened" (opened)="events.push('open!')"
-                 (closed)="events.push('close!')">
-      <mat-accordion>
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              Base Criteria
-            </mat-panel-title>
-            <mat-panel-description>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <p>This is the primary content of the panel.</p>
-          <mat-list>
-            <mat-list-item>
-                <b>Label:</b>&nbsp;Country
-            </mat-list-item>
-            <mat-list-item>
-                <b>Name:</b>&nbsp;country
-            </mat-list-item>
-            <mat-list-item>
-                <b>Operator:</b>&nbsp;= 
-            </mat-list-item>
-            <mat-list-item>
-                <b>Value:</b>&nbsp;United States
-            </mat-list-item>
-           </mat-list>
-        </mat-expansion-panel>
-        <mat-expansion-panel (opened)="panelOpenState = true"
-                             (closed)="panelOpenState = false">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              User Criteria
-            </mat-panel-title>
-            <mat-panel-description>
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <mat-card>
-            <mat-form-field>
-                <mat-label>Saved User Filters</mat-label>
-                <mat-select>
-                  <mat-option value="Filter 1">Filter 1</mat-option>
-                  <mat-option value="Filter 2">Filter 2</mat-option>
-                </mat-select>
-              </mat-form-field>
-            <button mat-icon-button color="primary"><mat-icon>add_box</mat-icon></button>
-            <button mat-icon-button color="primary"><mat-icon>create</mat-icon></button>
-            <button mat-icon-button color="primary"><mat-icon>delete</mat-icon></button>
-          </mat-card>
-
-          <mat-card>
-            <mat-form-field class="example-chip-list">
-                <mat-chip-list #chipList aria-label="Fruit selection">
-                  <mat-chip
-                    *ngFor="let fruit of fruits"
-                    [selectable]="selectable"
-                    [removable]="removable"
-                    (removed)="remove(fruit)">
-                    {{fruit}}
-                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                  </mat-chip>
-                  <input
-                    placeholder="Fruit"
-                    #fruitInput
-                    [formControl]="fruitCtrl"
-                    [matAutocomplete]="auto"
-                    [matChipInputFor]="chipList"
-                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                    (matChipInputTokenEnd)="add($event)">
-                </mat-chip-list>
-                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                  <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-                    {{fruit}}
-                  </mat-option>
-                </mat-autocomplete>
-              </mat-form-field>
-              <mat-form-field>
-                <mat-label>Operator</mat-label>
-                <mat-select>
-                  <mat-option value="=">=</mat-option>
-                  <mat-option value="<>">&lt;&gt;</mat-option>
-                </mat-select>
-              </mat-form-field>
-          </mat-card>
-          
-          
-        </mat-expansion-panel>
-      </mat-accordion>
+        (closed)="events.push('close!')">
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Base Criteria
+                    </mat-panel-title>
+                    <mat-panel-description>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p>This is the primary content of the panel.</p>
+                <mat-list>
+                    <mat-list-item>
+                        <b>Label:</b>&nbsp;Country
+                    </mat-list-item>
+                    <mat-list-item>
+                        <b>Name:</b>&nbsp;country
+                    </mat-list-item>
+                    <mat-list-item>
+                        <b>Operator:</b>&nbsp;=
+                    </mat-list-item>
+                    <mat-list-item>
+                        <b>Value:</b>&nbsp;United States
+                    </mat-list-item>
+                </mat-list>
+            </mat-expansion-panel>
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        User Criteria
+                    </mat-panel-title>
+                    <mat-panel-description>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <mat-card>
+                    <mat-form-field>
+                        <mat-label>Saved User Filters</mat-label>
+                        <mat-select>
+                            <mat-option value="Filter 1">Filter 1</mat-option>
+                            <mat-option value="Filter 2">Filter 2</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <button mat-icon-button color="primary">
+                        <mat-icon>add_box</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary">
+                        <mat-icon>create</mat-icon>
+                    </button>
+                    <button mat-icon-button color="primary">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-card>
+                <mat-card>
+                    <mat-form-field class="example-chip-list" style="width:300px;display:block;">
+                        <mat-chip-list #chipList aria-label="Fruit selection">
+                            <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
+                                (removed)="remove(fruit)">
+                                {{fruit}}
+                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+                            <input placeholder="Fruit" #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto"
+                                [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                (matChipInputTokenEnd)="add($event)">
+                        </mat-chip-list>
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                            <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                                {{fruit}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Operator</mat-label>
+                        <mat-select>
+                            <mat-option value="=">=</mat-option>
+                            <mat-option value="<>">&lt;&gt;</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-card>
+            </mat-expansion-panel>
+        </mat-accordion>
     </mat-sidenav>
     <mat-sidenav-content>
-        
-      <div fxLayout="column" fxLayoutAlign="start start" fxFill>
-        <div fxFlex="60" style="width:100%">
-            <mat-toolbar>
-                <span>Cats Dashboard</span>
-                <span class="example-spacer"></span>
-                <button mat-raised-button (click)="sidenav.toggle()">
-                    <mat-icon *ngIf="opened">close_fullscreen</mat-icon>
-                    <mat-icon *ngIf="!opened">open_in_full</mat-icon>
-                    Toggle</button>
-                <button mat-raised-button>
-                    <mat-icon>restore_page</mat-icon>
-                    Refresh</button>
-            </mat-toolbar>
-            <div cdkDropList cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
-                <div class="example-box" *ngFor="let timePeriod of timePeriods" cdkDrag>{{timePeriod}}</div>
-            </div>
-        </div>
-        <div fxFlex="40" style="width:100%">
-            <mat-toolbar>
-                <span>Results</span>
-                <span class="example-spacer"></span>
-                <button mat-raised-button>
-                    <mat-icon>restore_page</mat-icon>
-                    Refresh</button>
+        <div fxLayout="column" fxLayoutAlign="start start" fxFill>
+            <div fxFlex="grow" fxFill>
+                <mat-toolbar>
+                    <span>Cats Dashboard</span>
+                    <span class="example-spacer"></span>
+                    <button mat-raised-button (click)="sidenav.toggle()">
+                        <mat-icon *ngIf="opened">close_fullscreen</mat-icon>
+                        <mat-icon *ngIf="!opened">open_in_full</mat-icon>
+                        Toggle
+                    </button>
+                    <button mat-raised-button>
+                        <mat-icon>restore_page</mat-icon>
+                        Refresh
+                    </button>
+                </mat-toolbar>
+                <div fxFill style="padding-left:10px;">
+                    <div fxLayout="row wrap" fxLayoutGap="10px 10px grid" fxFill cdkDropList
+                        cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
+                        <div fxLayout="column" fxFlex="33" fxLayoutGap="10px" *ngFor="let timePeriod of timePeriods"
+                            cdkDrag>
+                            <div class="example-box" fxFill fxLayoutAlign="center center">
+                                {{timePeriod}}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <mat-toolbar>
+                    <span>Results</span>
+                    <span class="example-spacer"></span>
+                    <button mat-raised-button>
+                        <mat-icon>restore_page</mat-icon>
+                        Refresh
+                    </button>
                     <button mat-raised-button>
                         <mat-icon>save_alt</mat-icon>
-                        Export</button>
-             </mat-toolbar>
-             <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                <!-- Position Column -->
-                <ng-container matColumnDef="position">
-                  <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-                  <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-                </ng-container>
-              
-                <!-- Name Column -->
-                <ng-container matColumnDef="name">
-                  <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                  <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-                </ng-container>
-              
-                <!-- Weight Column -->
-                <ng-container matColumnDef="weight">
-                  <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-                  <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-                </ng-container>
-              
-                <!-- Symbol Column -->
-                <ng-container matColumnDef="symbol">
-                  <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-                  <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-                </ng-container>
-              
-                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-              </mat-table>    
-                    </div>
-    </div>
-      
-      
+                        Export
+                    </button>
+                </mat-toolbar>
+                <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                    </ng-container>
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="weight">
+                        <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+                    </ng-container>
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="symbol">
+                        <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+            </div>
+        </div>
     </mat-sidenav-content>
-  </mat-sidenav-container>
+</mat-sidenav-container>
