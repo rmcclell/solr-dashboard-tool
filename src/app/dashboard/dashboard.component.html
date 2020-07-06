@@ -97,14 +97,22 @@
                         Refresh
                     </button>
                 </mat-toolbar>
-                <div fxFill style="padding-left:10px;">
-                    <div fxLayout="row wrap" fxLayoutGap="10px 10px grid" fxFill cdkDropList
+                <div fxFill style="background-color:#FFF;">
+                    <div fxLayout="row wrap" style="padding:10px;" fxLayoutGap="10px 10px grid" fxFill cdkDropList
                         cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
                         <div fxLayout="column" fxFlex="33" fxLayoutGap="10px" *ngFor="let timePeriod of timePeriods"
                             cdkDrag>
-                            <div class="example-box" fxFill fxLayoutAlign="center center">
-                                {{timePeriod}}
-                            </div>
+                            <mat-card class="example-card">
+                                <mat-card-header>
+                                  <mat-card-title>{{timePeriod}}</mat-card-title>
+                                  <mat-card-subtitle>{{timePeriod}}</mat-card-subtitle>
+                                </mat-card-header>
+                                <mat-card-content fxFill fxLayoutAlign="start start">
+                                  <p>
+                                    {{timePeriod}}
+                                  </p>
+                                </mat-card-content>
+                              </mat-card>
 
                         </div>
                     </div>

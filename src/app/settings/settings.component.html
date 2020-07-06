@@ -1,17 +1,32 @@
 <h2 mat-dialog-title>Settings Manager</h2>
-<mat-dialog-content>
+<mat-dialog-content class="mat-typography">
     <mat-tab-group selectedIndex="0">
-        <mat-tab label="Preferences">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">developer_board</mat-icon>
+                Preferences
+              </ng-template>
             <app-preferences></app-preferences>
         </mat-tab>
-        <mat-tab label="Solr Indexes">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">list</mat-icon>
+                Solr Indexes
+              </ng-template>
             <app-solr-indexes></app-solr-indexes>
         </mat-tab>
-        <mat-tab label="Display">
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon class="example-tab-icon">desktop_window</mat-icon>
+                Display
+              </ng-template>
             <app-display></app-display>
         </mat-tab>
       </mat-tab-group>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Close</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>
+    <mat-icon>close</mat-icon>  
+    Close
+    </button>
 </mat-dialog-actions>
