@@ -11,7 +11,7 @@ import * as d3Axis from 'd3-axis';
 
 @Component({
   selector: 'app-pie-chart',
-  template: '<svg></svg>',
+  template: '<div id="pie"><svg></svg></div>',
   styles: [
     `div.tooltip {
       position: absolute;
@@ -45,21 +45,27 @@ export class PieChartComponent implements OnInit {
   private color: any;
   // Drawing containers
   private svg: any;  private mainContainer: any;
+  private tooltip: any;  private total: number;
+  private arcLabel: any;
+  private texts: any;
   // Data
   dataSource: Item[];
 
   constructor(private service: DataService) {
     this.dataSource = this.service.getData();
+    this.total = this.dataSource.reduce((sum, it) => sum += it.abs, 0);
   }
 
   ngOnInit() {
-    this.svg = d3.select('svg');
+    this.svg = d3.select('#pie').select('svg');
     this.setSVGDimensions();
     this.color = scaleOrdinal(schemeCategory10);
     this.mainContainer = this.svg.append('g').attr('transform', `translate(${this.radius},${this.radius})`);
     this.pie = d3Shape.pie().sort(null).value((d: any) => d.abs);
     this.draw();
     window.addEventListener('resize', this.resize.bind(this));
+    this.tooltip = d3.select('#pie') // or d3.select('#bar')
+    .append('div').attr('class', 'tooltip').style('display', 'none').style('opacity', 0);
   }
   private resize() {
     this.setSVGDimensions();
@@ -69,6 +75,8 @@ export class PieChartComponent implements OnInit {
 
   private repaint() {
     this.drawSlices();
+    this.drawLabels();
+    
   }
 
   private setSVGDimensions() {
@@ -77,13 +85,30 @@ export class PieChartComponent implements OnInit {
     this.svg.select('g').attr('transform', `translate(${this.radius},${this.radius})`);
   }
 
+  private drawLabels() {
+    this.texts = this.mainContainer.selectAll('text')
+      .remove().exit()
+      .data(this.pie(this.dataSource))
+      .enter().append('text')
+      .attr('text-anchor', 'middle').attr('transform', d => `translate(${this.arcLabel.centroid(d)})`).attr('dy', '0.35em');
+    this.texts.append('tspan').filter(d => (d.endAngle - d.startAngle) > 0.05)
+      .attr('x', 0).attr('y', 0).style('font-weight', 'bold')
+      .text(d => d.data.name);
+    this.texts.append('tspan').filter(d => (d.endAngle - d.startAngle) > 0.25)
+      .attr('x', 0).attr('y', '1.3em').attr('fill-opacity', 0.7)
+      .text(d => d.data.value);
+  }
+
   private draw() {
     this.setArcs();
     this.drawSlices();
+    this.drawLabels();
   }
 
   private setArcs() {
-    this.arc = d3Shape.arc().outerRadius(this.radius).innerRadius(this.radius * .75);
+    //this.arc = d3Shape.arc().outerRadius(this.radius).innerRadius(this.radius * .75);
+    this.arc = d3Shape.arc().outerRadius(this.radius).innerRadius(0);
+    this.arcLabel = d3Shape.arc().innerRadius(this.radius * .8).outerRadius(this.radius * .8);
   }
 
   private drawSlices() {
@@ -93,6 +118,15 @@ export class PieChartComponent implements OnInit {
       .enter().append('g').append('path')
       .attr('d', this.arc);
     this.slices
-      .attr('fill', (d, i) => this.color(i));
+      .attr('fill', (d, i) => this.color(i))
+      .on('mousemove', function (s) {
+        const percent = (Math.abs(s.data.abs / this.total) * 100).toFixed(2) + '%';
+        this.tooltip .style('top', (d3.event.layerY + 15) + 'px').style('left', (d3.event.layerX) + 'px')
+          .style('display', 'block').style('opacity', 1).style('height', '40px')
+          this.tooltip.html(`name: ${s.data.name}<br>value: ${s.data.value}<br>share: ${percent}`);
+      }.bind(this))
+      .on('mouseout', function () {
+        this.tooltip.style('display', 'none').style('opacity', 0);
+      }.bind(this));
   }
 }
