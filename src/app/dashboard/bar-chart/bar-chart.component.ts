@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, Input, ElementRef } from '@angular/core';
 import * as d3 from 'd3';
-import { Axis, AxisDomain } from 'd3';
+import { Axis, AxisDomain, schemeCategory10, scaleOrdinal } from 'd3';
 
 import { Item, DataService } from '../../data.service';
 
@@ -54,6 +54,7 @@ export class BarChartComponent implements OnInit {
    private xScale: any;
    private yAxis: Axis<AxisDomain>;
    private yScale: any;
+   private color: any;
    private tooltip: any;
  
    // Drawing containers
@@ -70,6 +71,7 @@ export class BarChartComponent implements OnInit {
 
   ngOnInit() {
     this.svg = d3.select('#bar-'+ this.id).select('svg');
+    this.color = scaleOrdinal(schemeCategory10);
     this.xScale = d3.scaleBand();
     this.yScale = d3.scaleLinear();
     this.initSvg();
@@ -116,6 +118,7 @@ export class BarChartComponent implements OnInit {
       .attr('height', d => Math.abs(this.yScale(d.value) - this.yScale(0)));
 
     this.bars
+      .attr('fill', (d, i) => this.color(i))
       .on('mousemove', function (s) {
         const percent = (Math.abs(s.abs / this.total) * 100).toFixed(2) + '%';
         this.tooltip
@@ -135,7 +138,7 @@ export class BarChartComponent implements OnInit {
           .transition()
           .ease(d3.easeBounce)
           .duration(150)
-          .attr('fill', 'gray')
+          //.attr('fill', 'gray')
           .attr('x', d => this.xScale(d['name']) - interval)
           .attr('width', this.xScale.bandwidth() + interval * 2)
           .attr('y', d => this.yScale(d['value']) - interval)
@@ -145,7 +148,7 @@ export class BarChartComponent implements OnInit {
           .transition()
           .ease(d3.easeBounce)
           .duration(150)
-          .style('color', 'gray')
+          //.style('color', 'gray')
           .attr('y', d => this.yScale(d['value']) + (-5 - interval));
       }.bind(this))
       .on('mouseout', function (data, i, arr) {
@@ -156,7 +159,7 @@ export class BarChartComponent implements OnInit {
           .transition()
           .ease(d3.easeBounce)
           .duration(150)
-          .attr('fill', 'black')
+          //.attr('fill', 'black')
           .attr('x', d => this.xScale(d['name']))
           .attr('width', this.xScale.bandwidth())
           .attr('y', d => this.yScale(d['value']))
