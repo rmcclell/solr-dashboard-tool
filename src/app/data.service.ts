@@ -13,8 +13,8 @@ export class DataService {
   private readonly NAMES = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
     'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
 
-  private readonly MIN_ITEM = 10;
-  private readonly MAX_ITEM = 20;
+  private readonly MIN_ITEM = 5;
+  private readonly MAX_ITEM = 7;
 
   private readonly MAX_VALUE = 100;
 
@@ -35,6 +35,7 @@ export class DataService {
         abs: Math.abs(val)
       });
     }
+    console.log(samples);
     return samples;
   }
 }

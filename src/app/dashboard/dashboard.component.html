@@ -101,18 +101,9 @@
                     <div fxLayout="row wrap" style="padding:10px;" fxLayoutGap="10px 10px grid" fxFill cdkDropList
                         cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
                         <div fxLayout="column" fxFlex="33" fxLayoutGap="10px" *ngFor="let timePeriod of timePeriods; index as i"
-                            cdkDrag>
-                            <mat-card class="example-card">
-                                <mat-card-header>
-                                  <mat-card-title>{{timePeriod}}</mat-card-title>
-                                  <mat-card-subtitle>{{timePeriod}}</mat-card-subtitle>
-                                </mat-card-header>
-                                <mat-card-content fxFill fxLayoutAlign="start start">
-                                    <app-pie-chart [id]="i"></app-pie-chart>
-                                    <!--<app-bar-chart></app-bar-chart>-->
-                                </mat-card-content>
-                              </mat-card>
-
+                        cdkDrag>
+                            <!--<app-pie-chart [id]="i" [description]="timePeriod" [title]="timePeriod"></app-pie-chart>-->
+                            <app-bar-chart [id]="i" [description]="timePeriod" [title]="timePeriod"></app-bar-chart>
                         </div>
                     </div>
                 </div>
