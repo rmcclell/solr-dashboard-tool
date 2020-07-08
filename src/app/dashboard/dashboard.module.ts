@@ -7,11 +7,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
-import { PieChartComponent } from './pie-chart/pie-chart.component';
-import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { PieChartComponent } from './charts/pie-chart/pie-chart.component';
+import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
+import { ResultsComponent } from './results/results.component';
+import { ChartsComponent } from './charts/charts.component';
+import { CriteriaComponent } from './criteria/criteria.component';
 
 @NgModule({
-  declarations: [DashboardComponent, PieChartComponent, BarChartComponent],
+  declarations: [DashboardComponent, PieChartComponent, BarChartComponent, ResultsComponent, ChartsComponent, CriteriaComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,

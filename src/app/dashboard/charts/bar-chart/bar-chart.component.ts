@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, Input, ElementRef } fr
 import * as d3 from 'd3';
 import { Axis, AxisDomain, schemeCategory10, scaleOrdinal } from 'd3';
 
-import { Item, DataService } from '../../data.service';
+import { Item, DataService } from '../../../data.service';
 
 @Component({
   selector: 'app-bar-chart',

@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, Input} from '@angular/core';
-import { Item, DataService } from '../../data.service';
+import { Item, DataService } from '../../../data.service';
 
 import * as d3 from 'd3-selection';
 import { scaleLinear, scaleTime, scaleOrdinal } from 'd3-scale';
