@@ -28,14 +28,6 @@ import { Item, DataService } from '../../data.service';
       font: 15px;
       font-weight: 400;
       text-anchor: middle;
-    }
-    .example-card {
-      min-width: 300px !important;
-      min-height: 300px !important;
-    }
-    .example-list {
-      min-height: 900px !important;
-      overflow: visible;
     }`
   ],
   encapsulation: ViewEncapsulation.None
@@ -78,12 +70,11 @@ export class BarChartComponent implements OnInit {
 
   ngOnInit() {
     this.svg = d3.select('#bar-'+ this.id).select('svg');
-    debugger;
     this.xScale = d3.scaleBand();
     this.yScale = d3.scaleLinear();
     this.initSvg();
 
-    this.tooltip = d3.select('#bar-'+ this.id).select('svg')
+    this.tooltip = d3.select('#bar-'+ this.id)
       .append('div')
       .attr('class', 'tooltip')
       .style('display', 'none')

@@ -14,7 +14,7 @@ import * as d3Axis from 'd3-axis';
   templateUrl: './pie-chart.component.html',
   styles: [
     `div.tooltip {
-      position: absolute;
+      position:absolute;
       text-align: center;
       width: 80px;
       height: 40px;
@@ -27,14 +27,6 @@ import * as d3Axis from 'd3-axis';
       pointer-events: none;
       vertical-align: middle;
       z-index: 10;
-    }
-    .example-card {
-      min-width: 300px !important;
-      min-height: 300px !important;
-    }
-    .example-list {
-      min-height: 900px !important;
-      overflow: visible;
     }`
   ],
   encapsulation: ViewEncapsulation.None
@@ -74,8 +66,12 @@ export class PieChartComponent implements OnInit {
     this.pie = d3Shape.pie().sort(null).value((d: any) => d.abs);
     this.draw();
     window.addEventListener('resize', this.resize.bind(this));
-    this.tooltip = d3.select('#pie-' + this.id) // or d3.select('#bar')
-    .append('div').attr('class', 'tooltip').style('display', 'none').style('opacity', 0);
+    
+    this.tooltip = d3.select('#pie-'+ this.id)
+      .append('div')
+      .attr('class', 'tooltip')
+      .style('display', 'none')
+      .style('opacity', 0);
   }
   private resize() {
     this.setSVGDimensions();
@@ -131,7 +127,7 @@ export class PieChartComponent implements OnInit {
       .attr('fill', (d, i) => this.color(i))
       .on('mousemove', function (s) {
         const percent = (Math.abs(s.data.abs / this.total) * 100).toFixed(2) + '%';
-        this.tooltip .style('top', (d3.event.layerY + 15) + 'px').style('left', (d3.event.layerX) + 'px')
+        this.tooltip.style('top', (d3.event.layerY + 15) + 'px').style('left', (d3.event.layerX + 15) + 'px')
           .style('display', 'block').style('opacity', 1).style('height', '40px')
           this.tooltip.html(`name: ${s.data.name}<br>value: ${s.data.value}<br>share: ${percent}`);
       }.bind(this))
