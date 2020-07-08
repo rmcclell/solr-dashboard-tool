@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, Input, ElementRef } from '@angular/core';
 import * as d3 from 'd3';
 import { Axis, AxisDomain } from 'd3';
 
@@ -28,17 +28,24 @@ import { Item, DataService } from '../../data.service';
       font: 15px;
       font-weight: 400;
       text-anchor: middle;
+    }
+    .example-card {
+      min-width: 300px !important;
+      min-height: 300px !important;
+    }
+    .example-list {
+      min-height: 900px !important;
+      overflow: visible;
     }`
   ],
   encapsulation: ViewEncapsulation.None
 })
 export class BarChartComponent implements OnInit {
-  @Input() id: number; 
+  @Input() id: number;
   @Input() description: string;
   @Input() title: string; 
-  get height(): number { return 260; }
-  get width(): number { return 260; }
-  //@ViewChild('chartContainer') chartDiv: ElementRef;
+  get height(): number { return 300; }
+  get width(): number { return 320; }
   //get height(): number { return parseInt(d3.select('body').style('height'), 10); }
   //get width(): number { return parseInt(d3.select('body').style('width'), 10); }
   private margin = { top: 20, right: 20, bottom: 20, left: 20 };
@@ -76,7 +83,7 @@ export class BarChartComponent implements OnInit {
     this.yScale = d3.scaleLinear();
     this.initSvg();
 
-    this.tooltip = d3.select('#bar-'+ this.id)
+    this.tooltip = d3.select('#bar-'+ this.id).select('svg')
       .append('div')
       .attr('class', 'tooltip')
       .style('display', 'none')

@@ -24,6 +24,12 @@ mat-table {
     background: white;
     border-radius: 4px;
     overflow: hidden;*/
+    min-height: 900px !important;
+    overflow: visible;
+  }
+
+  .charts-container {
+    min-height: 900px !important;
     overflow: visible;
   }
   
@@ -45,8 +51,8 @@ mat-table {
   }
 
   .example-card {
-    max-width: 400px;
-    min-height: 325px !important;
+    /*max-width: 400px;*/
+    /*min-height: 300px !important;*/
   }
   
   .cdk-drag-preview {

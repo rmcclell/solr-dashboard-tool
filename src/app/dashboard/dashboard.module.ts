@@ -19,6 +19,9 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
     ReactiveFormsModule,
     DashboardRoutingModule,
     MaterialModule
+  ],
+  entryComponents: [
+    PieChartComponent, BarChartComponent
   ]
 })
 export class DashboardModule { }

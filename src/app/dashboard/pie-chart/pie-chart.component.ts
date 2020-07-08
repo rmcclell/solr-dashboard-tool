@@ -11,7 +11,7 @@ import * as d3Axis from 'd3-axis';
 
 @Component({
   selector: 'app-pie-chart',
-  template: '<div id="pie"><svg></svg></div>',
+  templateUrl: './pie-chart.component.html',
   styles: [
     `div.tooltip {
       position: absolute;
@@ -27,18 +27,28 @@ import * as d3Axis from 'd3-axis';
       pointer-events: none;
       vertical-align: middle;
       z-index: 10;
+    }
+    .example-card {
+      min-width: 300px !important;
+      min-height: 300px !important;
+    }
+    .example-list {
+      min-height: 900px !important;
+      overflow: visible;
     }`
   ],
   encapsulation: ViewEncapsulation.None
 })
 export class PieChartComponent implements OnInit {
 
-@Input() id: number; 
+  @Input() id: number;
+  @Input() description: string;
+  @Input() title: string;  
 //get height(): number { return parseInt(d3.select('body').style('height'), 10); }
 //get width(): number { return parseInt(d3.select('body').style('width'), 10); }
   
-  get height(): number { return 260; }
-  get width(): number { return 260; }
+  get height(): number { return 300; }
+  get width(): number { return 320; }
   radius: number;
   // Arcs & pie
   private arc: any;  private pie: any;  private slices: any;
@@ -57,14 +67,14 @@ export class PieChartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.svg = d3.select('#pie').select('svg');
+    this.svg = d3.select('#pie-' + this.id).select('svg');
     this.setSVGDimensions();
     this.color = scaleOrdinal(schemeCategory10);
     this.mainContainer = this.svg.append('g').attr('transform', `translate(${this.radius},${this.radius})`);
     this.pie = d3Shape.pie().sort(null).value((d: any) => d.abs);
     this.draw();
     window.addEventListener('resize', this.resize.bind(this));
-    this.tooltip = d3.select('#pie') // or d3.select('#bar')
+    this.tooltip = d3.select('#pie-' + this.id) // or d3.select('#bar')
     .append('div').attr('class', 'tooltip').style('display', 'none').style('opacity', 0);
   }
   private resize() {

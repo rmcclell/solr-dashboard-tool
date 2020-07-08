@@ -97,14 +97,17 @@
                         Refresh
                     </button>
                 </mat-toolbar>
-                <div fxFill style="background-color:#FFF;">
-                    <div fxLayout="row wrap" style="padding:10px;" fxLayoutGap="10px 10px grid" fxFill cdkDropList
+                <div fxFill style="background-color:#FFF; min-height:900px;" class="charts-container">
+                    <div fxLayout="row wrap" fxFlex="grow" style="padding:10px; min-height: 900px; !important;" fxLayoutGap="10px 10px grid" fxFill cdkDropList
                         cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
-                        <div fxLayout="column" fxFlex="33" fxLayoutGap="10px" *ngFor="let timePeriod of timePeriods; index as i"
-                        cdkDrag>
-                            <!--<app-pie-chart [id]="i" [description]="timePeriod" [title]="timePeriod"></app-pie-chart>-->
+                        <ng-container *ngFor="let timePeriod of timePeriods; index as i; even as e; odd as o">
+                        <div *ngIf="o" id="pie-{{i}}" fxLayout="column" fxFlex="33" fxLayoutGap="10px" cdkDrag>
+                            <app-pie-chart [id]="i" [description]="timePeriod" [title]="timePeriod"></app-pie-chart>
+                        </div>
+                        <div *ngIf="e" id="bar-{{i}}" fxLayout="column" fxFlex="33" fxLayoutGap="10px" cdkDrag>
                             <app-bar-chart [id]="i" [description]="timePeriod" [title]="timePeriod"></app-bar-chart>
                         </div>
+                    </ng-container>
                     </div>
                 </div>
                 <mat-toolbar>
