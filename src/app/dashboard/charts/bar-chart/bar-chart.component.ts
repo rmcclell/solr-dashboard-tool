@@ -104,7 +104,7 @@ export class BarChartComponent implements OnInit {
       .exit()
       .data(this.dataSource)
       .enter().append('rect')
-      .attr('class', d => d.value > 0 ? 'bar bar--positive' : 'bar bar--negative');
+      .attr('class', (d: any) => d.value > 0 ? 'bar bar--positive' : 'bar bar--negative');
 
     this.bars
       .attr('x', d => this.xScale(d.name))
@@ -138,16 +138,16 @@ export class BarChartComponent implements OnInit {
           .transition()
           .ease(d3.easeBounce)
           .duration(150)
-          .attr('x', d => this.xScale(d.name) - interval)
+          .attr('x', (d: any) => this.xScale(d.name) - interval)
           .attr('width', this.xScale.bandwidth() + interval * 2)
-          .attr('y', d => this.yScale(d.value) - interval)
-          .attr('height', d => Math.abs(this.yScale(d.value) - this.yScale(0)) + interval);
+          .attr('y', (d: any) => this.yScale(d.value) - interval)
+          .attr('height', (d: any) => Math.abs(this.yScale(d.value) - this.yScale(0)) + interval);
 
         d3.select(this.labels._groups[0][i])
           .transition()
           .ease(d3.easeBounce)
           .duration(150)
-          .attr('y', d => this.yScale(d.value) + (-5 - interval));
+          .attr('y', (d: any) => this.yScale(d.value) + (-5 - interval));
       }.bind(this))
       .on('mouseout', function(data, i, arr) {
         this.tooltip.style('display', 'none');
@@ -157,18 +157,18 @@ export class BarChartComponent implements OnInit {
           .transition()
           .ease(d3.easeBounce)
           .duration(150)
-          .attr('x', d => this.xScale(d.name))
+          .attr('x', (d: any) => this.xScale(d.name))
           .attr('width', this.xScale.bandwidth())
-          .attr('y', d => this.yScale(d.value))
-          .attr('y', d => this.yScale(d.value))
-          .attr('height', d => Math.abs(this.yScale(d.value) - this.yScale(0)));
+          .attr('y', (d: any) => this.yScale(d.value))
+          .attr('y', (d: any) => this.yScale(d.value))
+          .attr('height', (d: any) => Math.abs(this.yScale(d.value) - this.yScale(0)));
 
         d3.select(this.labels._groups[0][i])
           .transition()
           .ease(d3.easeBounce)
           .duration(150)
           .style('color', 'black')
-          .attr('y', d => this.yScale(d.value) - 5);
+          .attr('y', (d: any) => this.yScale(d.value) - 5);
       }.bind(this));
   }
 

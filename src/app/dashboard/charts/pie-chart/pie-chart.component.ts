@@ -2,12 +2,9 @@ import { Component, OnInit, ViewEncapsulation, Input} from '@angular/core';
 import { Item, DataService } from '../../../data.service';
 
 import * as d3 from 'd3-selection';
-import { scaleLinear, scaleTime, scaleOrdinal } from 'd3-scale';
+import { scaleOrdinal } from 'd3-scale';
 import { schemeCategory10 } from 'd3-scale-chromatic';
 import * as d3Shape from 'd3-shape';
-import * as d3Array from 'd3-array';
-import * as d3Axis from 'd3-axis';
-
 
 @Component({
   selector: 'app-pie-chart',
