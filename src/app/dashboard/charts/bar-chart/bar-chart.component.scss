@@ -1,0 +1,22 @@
+div.tooltip {
+  position: absolute;
+  text-align: center;
+  width: 80px;
+  height: 40px;
+  padding: 5px;
+  font-size: 12px;
+  font-family: sans-serif;
+  background: #000;
+  color: #FFF;
+  border: 0;
+  border-radius: 8px;
+  pointer-events: none;
+  vertical-align: middle;
+  z-index: 10;
+}
+svg text.label {
+  fill: #000;
+  font-size: 15px;
+  font-weight: 400;
+  text-anchor: middle;
+}

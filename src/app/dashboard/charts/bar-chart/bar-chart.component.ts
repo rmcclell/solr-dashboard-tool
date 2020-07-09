@@ -7,29 +7,7 @@ import { Item, DataService } from '../../../data.service';
 @Component({
   selector: 'app-bar-chart',
   templateUrl: './bar-chart.component.html',
-  styles: [
-    `div.tooltip {
-      position: absolute;
-      text-align: center;
-      width: 80px;
-      height: 40px;
-      padding: 5px;
-      font: 12px sans-serif;
-      background: black;
-      color: white;
-      border: 0px;
-      border-radius: 8px;
-      pointer-events: none;
-      vertical-align: middle;
-      z-index: 10;
-    }
-    svg text.label {
-      fill: black;
-      font: 15px;
-      font-weight: 400;
-      text-anchor: middle;
-    }`
-  ],
+  styleUrls: ['./bar-chart.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class BarChartComponent implements OnInit {

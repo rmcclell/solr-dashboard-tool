@@ -10,9 +10,7 @@ export class ChartsComponent implements OnInit {
   timePeriods = [
     'Bronze age',
     'Iron age',
-    'Middle ages',
-    'Early modern period',
-    'Long nineteenth century'
+    'Middle ages'
   ];
 
   constructor() { }

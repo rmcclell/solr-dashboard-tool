@@ -9,23 +9,7 @@ import * as d3Shape from 'd3-shape';
 @Component({
   selector: 'app-pie-chart',
   templateUrl: './pie-chart.component.html',
-  styles: [
-    `div.tooltip {
-      position:absolute;
-      text-align: center;
-      width: 80px;
-      height: 40px;
-      padding: 5px;
-      font: 12px sans-serif;
-      background: black;
-      color: white;
-      border: 0px;
-      border-radius: 8px;
-      pointer-events: none;
-      vertical-align: middle;
-      z-index: 10;
-    }`
-  ],
+  styleUrls: ['./pie-chart.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class PieChartComponent implements OnInit {

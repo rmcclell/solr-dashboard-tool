@@ -22,7 +22,7 @@ export class CriteriaComponent implements OnInit {
       startWith(null),
       map((fruit: string | null) => fruit ? this._filter(fruit) : this.allFruits.slice()));
   }
-  panelOpenState = false;
+  panelOpenState = true;
   visible = true;
   selectable = true;
   removable = true;

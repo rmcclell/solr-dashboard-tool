@@ -1,9 +1,4 @@
-.container {
-    width: 100%;
-    height: calc(100vh - 128px);
-    overflow: auto;
-  }
-  table {
+table {
     height: 100%;;
     width: 100%;
 }
@@ -12,16 +7,6 @@ mat-table {
     height: 100%;;
     width: 100%;
 }
-
-.example-list {
-    min-height: 900px !important;
-    overflow: visible;
-  }
-
-  .charts-container {
-    min-height: 900px !important;
-    overflow: visible;
-  }
 
   .cdk-drag-preview {
     box-sizing: border-box;
@@ -38,26 +23,12 @@ mat-table {
   .cdk-drag-animating {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   }
-  
-  .example-box:last-child {
-    border: none;
-  }
-  
-  .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
-    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-  }
-  
-  .example-chip-list {
-    width: 100%;
-  }
+ 
 
   .example-spacer {
     flex: 1 1 auto;
   }
 
-  mat-grid-tile {
-    background: lightblue;
-  }
   .mat-card-header-text {
     margin: 0 !important;
 }

@@ -1,5 +1,5 @@
-<mat-accordion>
-    <mat-expansion-panel>
+<mat-accordion multi>
+    <mat-expansion-panel [expanded]="true">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 Base Criteria
@@ -23,7 +23,7 @@
             </mat-list-item>
         </mat-list>
     </mat-expansion-panel>
-    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel [expanded]="true">
         <mat-expansion-panel-header>
             <mat-panel-title>
                 User Criteria
