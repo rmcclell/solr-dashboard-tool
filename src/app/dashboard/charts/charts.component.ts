@@ -16,7 +16,7 @@ export class ChartsComponent implements OnInit {
   ];
 
   constructor() { }
-  
+
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.timePeriods, event.previousIndex, event.currentIndex);
   }

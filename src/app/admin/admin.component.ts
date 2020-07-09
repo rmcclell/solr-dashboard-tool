@@ -30,7 +30,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class AdminComponent implements OnInit {
 
-  columns: string[] = ['actions','position', 'name', 'weight', 'symbol'];
+  columns: string[] = ['actions', 'position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
 
   drop(event: CdkDragDrop<string[]>) {

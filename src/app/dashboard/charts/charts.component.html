@@ -1,5 +1,5 @@
 <div fxFill style="background-color:#FFF; min-height:900px;" class="charts-container">
-    <div fxLayout="row wrap" fxFlex="grow" style="padding:10px; min-height: 900px; !important;" fxLayoutGap="10px 10px grid" fxFill cdkDropList
+    <div fxLayout="row wrap" fxFlex="grow" style="padding:10px; min-height: 900px !important;" fxLayoutGap="10px 10px grid" fxFill cdkDropList
         cdkDropListOrientation="horizontal" class="example-list" (cdkDropListDropped)="drop($event)">
         <ng-container *ngFor="let timePeriod of timePeriods; index as i; even as e; odd as o">
         <div *ngIf="o" id="pie-{{i}}" fxLayout="column" fxFlex="33" fxLayoutGap="10px" cdkDrag>

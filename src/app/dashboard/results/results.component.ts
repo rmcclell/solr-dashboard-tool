@@ -31,7 +31,7 @@ export class ResultsComponent implements OnInit {
 
   displayedColumns = ['position', 'name', 'weight', 'symbol'];
   dataSource = ELEMENT_DATA;
-  
+
   constructor() { }
 
   ngOnInit(): void {

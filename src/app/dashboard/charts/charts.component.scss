@@ -1,7 +1,6 @@
 .container {
     width: 100%;
     height: calc(100vh - 128px);
-    /*height: 100%;*/
     overflow: auto;
   }
   table {
@@ -14,16 +13,7 @@ mat-table {
     width: 100%;
 }
 
-.example-list {
-    /*width: 1000px;
-    max-width: 100%;
-    border: solid 1px #ccc;
-    min-height: 60px;
-    display: flex;
-    flex-direction: row;
-    background: white;
-    border-radius: 4px;
-    overflow: hidden;*/
+    .example-list {
     min-height: 900px !important;
     overflow: visible;
   }
@@ -31,28 +21,6 @@ mat-table {
   .charts-container {
     min-height: 900px !important;
     overflow: visible;
-  }
-  
-  .example-box {
-    /*border: solid 1px #000 !important;
-    color: rgba(0, 0, 0, 0.87);
-    */
-    /*display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
-    */
-    /*cursor: move;
-    background: white;*.
-    /*font-size: 14px;
-    flex-grow: 1;
-    flex-basis: 0;*/
-  }
-
-  .example-card {
-    /*max-width: 400px;*/
-    /*min-height: 300px !important;*/
   }
   
   .cdk-drag-preview {
@@ -81,9 +49,6 @@ mat-table {
   
   .example-chip-list {
     width: 100%;
-  }
-  mat-card {
-    /*margin-bottom:10px;*/
   }
 
   .example-spacer {

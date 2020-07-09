@@ -35,10 +35,10 @@ export class PieChartComponent implements OnInit {
 
   @Input() id: number;
   @Input() description: string;
-  @Input() title: string;  
-//get height(): number { return parseInt(d3.select('body').style('height'), 10); }
-//get width(): number { return parseInt(d3.select('body').style('width'), 10); }
-  
+  @Input() title: string;
+// get height(): number { return parseInt(d3.select('body').style('height'), 10); }
+// get width(): number { return parseInt(d3.select('body').style('width'), 10); }
+
   get height(): number { return 300; }
   get width(): number { return 320; }
   radius: number;
@@ -66,8 +66,8 @@ export class PieChartComponent implements OnInit {
     this.pie = d3Shape.pie().sort(null).value((d: any) => d.abs);
     this.draw();
     window.addEventListener('resize', this.resize.bind(this));
-    
-    this.tooltip = d3.select('#pie-'+ this.id)
+
+    this.tooltip = d3.select('#pie-' + this.id)
       .append('div')
       .attr('class', 'tooltip')
       .style('display', 'none')
@@ -82,7 +82,7 @@ export class PieChartComponent implements OnInit {
   private repaint() {
     this.drawSlices();
     this.drawLabels();
-    
+
   }
 
   private setSVGDimensions() {
@@ -112,7 +112,7 @@ export class PieChartComponent implements OnInit {
   }
 
   private setArcs() {
-    //this.arc = d3Shape.arc().outerRadius(this.radius).innerRadius(this.radius * .75);
+    // this.arc = d3Shape.arc().outerRadius(this.radius).innerRadius(this.radius * .75);
     this.arc = d3Shape.arc().outerRadius(this.radius).innerRadius(0);
     this.arcLabel = d3Shape.arc().innerRadius(this.radius * .8).outerRadius(this.radius * .8);
   }
@@ -125,13 +125,13 @@ export class PieChartComponent implements OnInit {
       .attr('d', this.arc);
     this.slices
       .attr('fill', (d, i) => this.color(i))
-      .on('mousemove', function (s) {
+      .on('mousemove', function(s) {
         const percent = (Math.abs(s.data.abs / this.total) * 100).toFixed(2) + '%';
         this.tooltip.style('top', (d3.event.layerY + 15) + 'px').style('left', (d3.event.layerX + 15) + 'px')
-          .style('display', 'block').style('opacity', 1).style('height', '40px')
-          this.tooltip.html(`name: ${s.data.name}<br>value: ${s.data.value}<br>share: ${percent}`);
+          .style('display', 'block').style('opacity', 1).style('height', '40px');
+        this.tooltip.html(`name: ${s.data.name}<br>value: ${s.data.value}<br>share: ${percent}`);
       }.bind(this))
-      .on('mouseout', function () {
+      .on('mouseout', function() {
         this.tooltip.style('display', 'none').style('opacity', 0);
       }.bind(this));
   }

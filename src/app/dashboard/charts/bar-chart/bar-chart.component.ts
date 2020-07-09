@@ -35,11 +35,11 @@ import { Item, DataService } from '../../../data.service';
 export class BarChartComponent implements OnInit {
   @Input() id: number;
   @Input() description: string;
-  @Input() title: string; 
+  @Input() title: string;
   get height(): number { return 300; }
   get width(): number { return 320; }
-  //get height(): number { return parseInt(d3.select('body').style('height'), 10); }
-  //get width(): number { return parseInt(d3.select('body').style('width'), 10); }
+  // get height(): number { return parseInt(d3.select('body').style('height'), 10); }
+  // get width(): number { return parseInt(d3.select('body').style('width'), 10); }
   private margin = { top: 20, right: 20, bottom: 20, left: 20 };
   get barWidth(): number { return this.width - this.margin.left - this.margin.right; }
   get barHeight(): number { return this.height - this.margin.top - this.margin.bottom; }
@@ -48,7 +48,7 @@ export class BarChartComponent implements OnInit {
    private gy: any; // Y axis
    private bars: any; // Bars
    private labels: any; // Labels
- 
+
    // Scales and Axis
    private xAxis: Axis<AxisDomain>;
    private xScale: any;
@@ -56,27 +56,27 @@ export class BarChartComponent implements OnInit {
    private yScale: any;
    private color: any;
    private tooltip: any;
- 
+
    // Drawing containers
    private svg: any;
    private mainContainer: any;
- 
+
    dataSource: Item[];
    total: number;
 
   constructor(private service: DataService) {
-    this.dataSource = <Item[]>this.service.getData();
+    this.dataSource = (this.service.getData() as Item[]);
     this.total = this.dataSource.reduce((sum, it) => sum += it.abs, 0);
   }
 
   ngOnInit() {
-    this.svg = d3.select('#bar-'+ this.id).select('svg');
+    this.svg = d3.select('#bar-' + this.id).select('svg');
     this.color = scaleOrdinal(schemeCategory10);
     this.xScale = d3.scaleBand();
     this.yScale = d3.scaleLinear();
     this.initSvg();
 
-    this.tooltip = d3.select('#bar-'+ this.id)
+    this.tooltip = d3.select('#bar-' + this.id)
       .append('div')
       .attr('class', 'tooltip')
       .style('display', 'none')
@@ -119,7 +119,7 @@ export class BarChartComponent implements OnInit {
 
     this.bars
       .attr('fill', (d, i) => this.color(i))
-      .on('mousemove', function (s) {
+      .on('mousemove', function(s) {
         const percent = (Math.abs(s.abs / this.total) * 100).toFixed(2) + '%';
         this.tooltip
           .style('top', (d3.event.layerY + 15) + 'px')
@@ -131,27 +131,25 @@ export class BarChartComponent implements OnInit {
             'value: ' + s.value + '<br>' +
             'share: ' + percent);
       }.bind(this))
-      .on('mouseover', function (data, i, arr) {
+      .on('mouseover', function(data, i, arr) {
         const interval = 3;
 
         d3.select(arr[i])
           .transition()
           .ease(d3.easeBounce)
           .duration(150)
-          //.attr('fill', 'gray')
-          .attr('x', d => this.xScale(d['name']) - interval)
+          .attr('x', d => this.xScale(d.name) - interval)
           .attr('width', this.xScale.bandwidth() + interval * 2)
-          .attr('y', d => this.yScale(d['value']) - interval)
-          .attr('height', d => Math.abs(this.yScale(d['value']) - this.yScale(0)) + interval);
+          .attr('y', d => this.yScale(d.value) - interval)
+          .attr('height', d => Math.abs(this.yScale(d.value) - this.yScale(0)) + interval);
 
         d3.select(this.labels._groups[0][i])
           .transition()
           .ease(d3.easeBounce)
           .duration(150)
-          //.style('color', 'gray')
-          .attr('y', d => this.yScale(d['value']) + (-5 - interval));
+          .attr('y', d => this.yScale(d.value) + (-5 - interval));
       }.bind(this))
-      .on('mouseout', function (data, i, arr) {
+      .on('mouseout', function(data, i, arr) {
         this.tooltip.style('display', 'none');
         this.tooltip.style('opacity', 0);
 
@@ -159,19 +157,18 @@ export class BarChartComponent implements OnInit {
           .transition()
           .ease(d3.easeBounce)
           .duration(150)
-          //.attr('fill', 'black')
-          .attr('x', d => this.xScale(d['name']))
+          .attr('x', d => this.xScale(d.name))
           .attr('width', this.xScale.bandwidth())
-          .attr('y', d => this.yScale(d['value']))
-          .attr('y', d => this.yScale(d['value']))
-          .attr('height', d => Math.abs(this.yScale(d['value']) - this.yScale(0)));
+          .attr('y', d => this.yScale(d.value))
+          .attr('y', d => this.yScale(d.value))
+          .attr('height', d => Math.abs(this.yScale(d.value) - this.yScale(0)));
 
         d3.select(this.labels._groups[0][i])
           .transition()
           .ease(d3.easeBounce)
           .duration(150)
           .style('color', 'black')
-          .attr('y', d => this.yScale(d['value']) - 5);
+          .attr('y', d => this.yScale(d.value) - 5);
       }.bind(this));
   }
 

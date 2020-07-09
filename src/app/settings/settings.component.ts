@@ -18,7 +18,7 @@ import {DisplayComponent} from './display/display.component';
 export class SettingsEntryComponent {
 
   constructor(public dialog: MatDialog, private router: Router,
-    private route: ActivatedRoute) {
+              private route: ActivatedRoute) {
     this.openDialog();
   }
   openDialog(): void {
@@ -49,7 +49,7 @@ export class SettingsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
+
   }
 
   onNoClick(): void {

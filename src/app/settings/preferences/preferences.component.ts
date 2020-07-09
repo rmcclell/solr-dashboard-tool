@@ -11,11 +11,11 @@ export class PreferencesComponent implements OnInit {
 
   constructor() { }
 
+  columns: string[] = ['actions', 'position', 'name', 'weight', 'symbol'];
+  dataSource = ELEMENT_DATA;
+
   ngOnInit(): void {
   }
-
-  columns: string[] = ['actions','position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
