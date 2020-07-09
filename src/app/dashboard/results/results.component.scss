@@ -1,10 +1,13 @@
-table {
-    height: 100%;;
+mat-table {
     width: 100%;
 }
 
-mat-table {
-    height: 100%;;
+.example-container {
+    height: 220px;
+    overflow: auto;
+}
+  
+table {
     width: 100%;
 }
 
