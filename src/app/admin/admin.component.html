@@ -1,7 +1,7 @@
 <mat-toolbar>
   <span>Dasboards</span>
   <span class="example-spacer"></span>
-  <button mat-raised-button class="example-icon" aria-label="">
+  <button mat-raised-button class="example-icon" routerLink="/admin/create">
     <mat-icon>add_box</mat-icon>
     <span>Add</span>
   </button>
@@ -16,13 +16,13 @@
   <ng-container matColumnDef="actions">
     <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
     <mat-cell *matCellDef="let element">
-      <button mat-icon-button aria-label="">
+      <button mat-icon-button [routerLink]="[{ outlets: { popup: ['delete'] } }]">
         <mat-icon>delete</mat-icon>
       </button>
-      <button mat-icon-button aria-label="">
+      <button mat-icon-button routerLink="/admin/edit">
         <mat-icon>create</mat-icon>
       </button>
-      <button mat-icon-button aria-label="">
+      <button mat-icon-button [routerLink]="[{ outlets: { popup: ['clone'] } }]">
         <mat-icon>content_copy</mat-icon>
       </button>
     </mat-cell>
