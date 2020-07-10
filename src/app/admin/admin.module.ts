@@ -12,6 +12,9 @@ import { MaterialModule } from '../material/material.module';
     CommonModule,
     MaterialModule,
     AdminRoutingModule
+  ],
+  exports: [
+    MaterialModule
   ]
 })
 export class AdminModule { }
