@@ -1,27 +1,19 @@
 .container {
-    height: calc(100vh - 128px);
+    height: calc(100vh - 195px);
     overflow: auto;
 }
 
-table {
-    height: 100%;;
+mat-table {
     width: 100%;
 }
 
-mat-table {
-    height: 100%;;
-    width: 100%;
-}
 .example-spacer {
     flex: 1 1 auto;
-  }
+}
 
-  table {
-    width: 100%;
-  }
-  th.mat-column-actions, td.mat-column-actions {
-      width:100px;
-  }
-  button.mat-raised-button {
-      margin-right:8px;
-  }
+th.mat-column-actions, td.mat-column-actions {
+    width:150px;
+}
+button.mat-raised-button {
+    margin-right:8px;
+}
