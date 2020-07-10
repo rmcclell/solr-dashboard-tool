@@ -5,3 +5,34 @@
 .mat-form-field {
     margin-top: 16px;
 }
+
+.example-spacer {
+    flex: 1 1 auto;
+  }
+
+.mat-card-header-text {
+    margin: 0 !important;
+}
+
+.details, .save {
+    height: calc(100vh - 340px);
+    overflow: auto;
+}
+
+.example-container {
+    height: 230px;
+    overflow: auto;
+}
+
+.example-container2 {
+    height: 230px;
+    overflow: auto;
+}
+.example-container3 {
+    height: calc(100vh - 376px);
+    overflow: auto;
+}
+.example-container4 {
+    height: calc(100vh - 376px);
+    overflow: auto;
+}

@@ -1,36 +1,257 @@
 <mat-horizontal-stepper linear #stepper>
     <mat-step [stepControl]="firstFormGroup" [editable]="isEditable">
-      <form [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>Fill out your name</ng-template>
-        <mat-form-field>
-          <mat-label>Name</mat-label>
-          <input matInput formControlName="firstCtrl" placeholder="Last name, First name" required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
+        <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Details</ng-template>
+            <h3>
+                Name your dashboard and provide a brief description that will help you easily idenitify it. For example,
+                "My Orders by Status" You can make any dashboard your default view
+            </h3>
+            <div class="details">
+                <mat-form-field>
+                    <mat-label>Title</mat-label>
+                    <input matInput formControlName="firstCtrl" placeholder="Enter Title" required>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <textarea matInput placeholder="Enter Description"></textarea>
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="fill">
+                    <mat-label>Select</mat-label>
+                    <mat-select>
+                        <mat-option value="option">Cats</mat-option>
+                        <mat-option value="option">Dogs</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br>
+                <mat-checkbox>Active</mat-checkbox>
+            </div>
+            <mat-toolbar>
+                <span class="example-spacer"></span>
+                <button mat-button matStepperNext>
+                    Next
+                    <mat-icon>navigate_next</mat-icon>
+                </button>
+            </mat-toolbar>
+        </form>
     </mat-step>
-    <mat-step [stepControl]="secondFormGroup" [editable]="isEditable">
-      <form [formGroup]="secondFormGroup">
-        <ng-template matStepLabel>Fill out your address</ng-template>
-        <mat-form-field>
-          <mat-label>Address</mat-label>
-          <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                 required>
-        </mat-form-field>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
+    <!--<mat-step [stepControl]="secondFormGroup" [editable]="isEditable">-->
+    <mat-step>
+        <!--<form [formGroup]="secondFormGroup">-->
+            <ng-template matStepLabel>Filters</ng-template>
+            <h3>
+                Add filtering criteria to customize your dashboard. This will allow you to show only the order you want
+                by the information you want to see first.
+            </h3>
+            <mat-toolbar>
+                <span>Filters</span>
+                <span class="example-spacer"></span>
+                <button mat-raised-button>
+                    <mat-icon>add_box</mat-icon>
+                    Add
+                </button>
+            </mat-toolbar>
+            <div class="example-container mat-elevation-z8">
+                <mat-table [dataSource]="dataSource">
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                    </ng-container>
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="weight">
+                        <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+                    </ng-container>
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="symbol">
+                        <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+            </div>
+            <mat-toolbar>
+                <span>Results</span>
+                <span class="example-spacer"></span>
+            </mat-toolbar>
+            <div class="example-container2 mat-elevation-z8">
+                <mat-table [dataSource]="dataSource2">
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                    </ng-container>
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="weight">
+                        <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+                    </ng-container>
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="symbol">
+                        <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+            </div>
+            <mat-toolbar>
+                <span class="example-spacer"></span>
+                <button mat-button matStepperPrevious>
+                    <mat-icon>navigate_before</mat-icon>
+                    Back
+                </button>
+                <button mat-button matStepperNext>
+                    Next
+                    <mat-icon>navigate_next</mat-icon>
+                </button>
+            </mat-toolbar>
+        <!--</form>-->
+    </mat-step>
+    <!--<mat-step [stepControl]="thirdFormGroup" [editable]="isEditable">-->
+    <mat-step>
+        <!--<form [formGroup]="thirdFormGroup">-->
+            <ng-template matStepLabel>Charts</ng-template>
+            <h3>
+                Add Charts to visualize your filter Results.
+            </h3>
+            <mat-toolbar>
+                <span>Charts</span>
+                <span class="example-spacer"></span>
+                <button mat-raised-button>
+                    <mat-icon>add_box</mat-icon>
+                    Add
+                </button>
+            </mat-toolbar>
+            <div class="example-container3 mat-elevation-z8">
+                <mat-table [dataSource]="dataSource3">
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                    </ng-container>
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="weight">
+                        <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+                    </ng-container>
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="symbol">
+                        <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+            </div>
+            <mat-toolbar>
+                <span class="example-spacer"></span>
+                <button mat-button matStepperPrevious>
+                    <mat-icon>navigate_before</mat-icon>
+                    Back
+                </button>
+                <button mat-button matStepperNext>
+                    Next
+                    <mat-icon>navigate_next</mat-icon>
+                </button>
+            </mat-toolbar>
+        <!--</form>-->
+    </mat-step>
+    <!--<mat-step [stepControl]="forthFormGroup" [editable]="isEditable">-->
+    <mat-step [stepControl]="forthFormGroup" [editable]="isEditable">
+        <!--<form [formGroup]="forthFormGroup">-->
+            <ng-template matStepLabel>User Criteria</ng-template>
+            <h3>
+                Select additional filtering options to appear on your dashboard. This will allow you to further refine
+                you dashboard view.
+            </h3>
+            <mat-toolbar>
+                <span>User Criteria</span>
+                <span class="example-spacer"></span>
+                <button mat-raised-button>
+                    <mat-icon>add_box</mat-icon>
+                    Add
+                </button>
+            </mat-toolbar>
+            <div class="example-container4 mat-elevation-z8">
+                <mat-table [dataSource]="dataSource4">
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="position">
+                        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                    </ng-container>
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="weight">
+                        <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+                    </ng-container>
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="symbol">
+                        <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+            </div>
+            <mat-toolbar>
+                <span class="example-spacer"></span>
+                <button mat-button matStepperPrevious>
+                    <mat-icon>navigate_before</mat-icon>
+                    Back
+                </button>
+                <button mat-button matStepperNext>
+                    Next
+                    <mat-icon>navigate_next</mat-icon>
+                </button>
+            </mat-toolbar>
+        <!--</form>-->
     </mat-step>
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
-      </div>
+        <ng-template matStepLabel>Save</ng-template>
+        <h3>
+            Your dashboard has beeen created and added as a menu item to the Dashboards pulldown. You have the option to archive this dashboard at anytime. See the Wiki for managing Dashboards
+        </h3>
+        <div class="save">
+            <p>You are now done.</p>
+        </div>
+        <mat-toolbar>
+            <span class="example-spacer"></span>
+            <button mat-button matStepperPrevious>
+                <mat-icon>navigate_before</mat-icon>
+                Back
+            </button>
+            <button mat-button (click)="stepper.reset()">
+                <mat-icon>undo</mat-icon>
+                Reset
+            </button>
+            <button mat-button matStepperNext>
+                <mat-icon>save</mat-icon>
+                Save
+            </button>
+        </mat-toolbar>
     </mat-step>
-  </mat-horizontal-stepper>
+</mat-horizontal-stepper>
