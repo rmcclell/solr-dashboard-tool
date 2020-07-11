@@ -104,7 +104,7 @@ export class BarChartComponent implements OnInit {
           .style('left', (d3.event.layerX) + 'px')
           .style('display', 'block')
           .style('opacity', 1)
-          .style('height', '40px')
+          .style('height', '60px')
           .html('name: ' + s.name + '<br>' +
             'value: ' + s.value + '<br>' +
             'share: ' + percent);

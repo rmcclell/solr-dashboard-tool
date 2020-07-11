@@ -1,11 +1,19 @@
 <mat-toolbar>
   <span>Dasboards</span>
   <span class="example-spacer"></span>
-  <button mat-raised-button class="example-icon" routerLink="/admin/create">
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+  <button mat-raised-button class="example-icon" routerLink="/admin/create" matTooltip="Create New Dashboard">
     <mat-icon>add_box</mat-icon>
     <span>Add</span>
   </button>
-  <button mat-raised-button class="example-icon" aria-label="">
+  <button mat-raised-button matTooltip="Refresh Dashboards">
+    <mat-icon>restore_page</mat-icon>
+      Refresh
+  </button>
+  <button mat-raised-button class="example-icon" matTooltip="Delete All Dashboards">
     <mat-icon>delete_sweep</mat-icon>
     <span>Delete All</span>
   </button>
@@ -16,13 +24,13 @@
   <ng-container matColumnDef="actions">
     <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
     <mat-cell *matCellDef="let element">
-      <button mat-icon-button [routerLink]="[{ outlets: { popup: ['delete'] } }]">
+      <button mat-icon-button [routerLink]="[{ outlets: { popup: ['delete'] } }]" matTooltip="Delete Dashboard">
         <mat-icon>delete</mat-icon>
       </button>
-      <button mat-icon-button routerLink="/admin/edit">
+      <button mat-icon-button routerLink="/admin/edit" matTooltip="Edit Dashboard">
         <mat-icon>create</mat-icon>
       </button>
-      <button mat-icon-button [routerLink]="[{ outlets: { popup: ['clone'] } }]">
+      <button mat-icon-button [routerLink]="[{ outlets: { popup: ['clone'] } }]" matTooltip="Clone Dashboard">
         <mat-icon>content_copy</mat-icon>
       </button>
     </mat-cell>

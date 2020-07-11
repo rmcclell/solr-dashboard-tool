@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-
+import {MatTableDataSource} from '@angular/material/table';
 
 export interface PeriodicElement {
   name: string;
@@ -41,7 +41,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class AdminComponent implements OnInit {
 
   columns: string[] = ['actions', 'position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.columns, event.previousIndex, event.currentIndex);
@@ -50,6 +50,10 @@ export class AdminComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }
