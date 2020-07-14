@@ -19,7 +19,7 @@ export class ResultsComponent implements OnInit, AfterViewInit  {
 
   displayedColumns = ['id', 'breed','country','origin','bodyType','coat','pattern'];
   pageSize = 10;
-  exampleDatabase: ExampleHttpDatabase | null;
+  solrData: SolrHttpIndex | null;
   dataSource = [];
 
   resultsLength = 0;
@@ -34,7 +34,7 @@ export class ResultsComponent implements OnInit, AfterViewInit  {
   }
 
   ngAfterViewInit() {
-    this.exampleDatabase = new ExampleHttpDatabase(this._httpClient);
+    this.solrData = new SolrHttpIndex(this._httpClient);
 
     // If the user changes the sort order, reset back to the first page.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
@@ -44,8 +44,8 @@ export class ResultsComponent implements OnInit, AfterViewInit  {
         startWith({}),
         switchMap(() => {
           this.isLoadingResults = true;
-          return this.exampleDatabase!.getRepoIssues(
-            this.sort.active, this.sort.direction, this.paginator.pageIndex, this.pageSize);
+          return this.solrData!.getData(
+            this.sort.active, this.sort.direction, this.paginator.pageIndex, this.pageSize, this.displayedColumns.join(','));
         }),
         map(data => {
           // Flip flag to show that loading has finished.
@@ -60,18 +60,18 @@ export class ResultsComponent implements OnInit, AfterViewInit  {
         })
       ).subscribe(data => this.dataSource = data);
   }
-
-
-  
+  formatColumnHeader(header: string) {
+    return header.split(/(?=[A-Z])/).join(' ');
+  }
 }
 
-export class ExampleHttpDatabase {
+export class SolrHttpIndex {
   constructor(private _httpClient: HttpClient) {}
 
-  getRepoIssues(sort: string, order: string, page: number, pageSize: number): Observable<Result> {
+  getData(sort: string, order: string, page: number, pageSize: number, fieldsList: string): Observable<Result> {
     const href = 'http://localhost:8983/solr/cats/select';
     const requestUrl =
-        `${href}?q=country%3A(%5B%22United%20States%22%20TO%20%22United%20States%22%5D)&omitHeader=true&facet=false&fl=id,breed,country,origin,bodyType,coat,pattern&page=${page + 1}&start=0&rows=${pageSize}&sort=${sort}%20${order}`;
+        `${href}?q=country%3A(%5B%22United%20States%22%20TO%20%22United%20States%22%5D)&omitHeader=true&facet=false&fl=${fieldsList}&page=${page + 1}&start=0&rows=${pageSize}&sort=${sort}%20${order}`;
         http://localhost:8983/solr/cats/select
     return this._httpClient.get<Result>(requestUrl);
   }
