@@ -52,7 +52,7 @@ export class PieChartComponent implements OnInit {
     this.draw();
     window.addEventListener('resize', this.resize.bind(this));
 
-    this.tooltip = d3.select('#pie-' + this.id)
+    this.tooltip = d3.select('#pie-' + this.id).select('.mat-card-content')
       .append('div')
       .attr('class', 'tooltip');
   }
@@ -112,12 +112,16 @@ export class PieChartComponent implements OnInit {
         const percent = (Math.abs(s.data.abs / this.total) * 100).toFixed(2) + '%';
         this.tooltip
           .style('top', (d3.event.layerY + 15) + 'px')
-          .style('left', (d3.event.layerX + 320) + 'px')
+          .style('left', (d3.event.layerX) + 'px')
           .style('display', 'block');
         this.tooltip.html(`name: ${s.data.name}<br>value: ${s.data.value}<br>share: ${percent}`);
       }.bind(this))
-      .on('mouseout', function() {
+      .on('mouseover', function(data, i, arr) {
+         d3.select(arr[i]).style('stroke', 'black');
+      }.bind(this))
+      .on('mouseout', function(data, i, arr) {
         this.tooltip.style('display', 'none');
+        d3.select(arr[i]).style('stroke', this.color(i));
       }.bind(this));
   }
 }

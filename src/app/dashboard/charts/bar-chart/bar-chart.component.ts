@@ -54,7 +54,7 @@ export class BarChartComponent implements OnInit {
     this.yScale = d3.scaleLinear();
     this.initSvg();
 
-    this.tooltip = d3.select('#bar-' + this.id)
+    this.tooltip = d3.select('#bar-' + this.id).select('.mat-card-content')
       .append('div')
       .attr('class', 'tooltip');
   }
@@ -93,55 +93,22 @@ export class BarChartComponent implements OnInit {
       .attr('y', d => this.yScale(d.value))
       .attr('height', d => Math.abs(this.yScale(d.value) - this.yScale(0)));
 
-    this.bars
+      this.bars
       .attr('fill', (d, i) => this.color(i))
       .on('mousemove', function(s) {
         const percent = (Math.abs(s.abs / this.total) * 100).toFixed(2) + '%';
         this.tooltip
           .style('top', (d3.event.layerY + 15) + 'px')
-          .style('left', (d3.event.layerX) + 'px')
-          .style('display', 'block')
-          .html('name: ' + s.name + '<br>' +
-            'value: ' + s.value + '<br>' +
-            'share: ' + percent);
+          .style('left', (d3.event.layerX + 15) + 'px')
+          .style('display', 'block');
+        this.tooltip.html(`name: ${s.name}<br>value: ${s.value}<br>share: ${percent}`);
       }.bind(this))
       .on('mouseover', function(data, i, arr) {
-        const interval = 3;
-
-        d3.select(arr[i])
-          .transition()
-          .ease(d3.easeBounce)
-          .duration(150)
-          .attr('x', (d: any) => this.xScale(d.name) - interval)
-          .attr('width', this.xScale.bandwidth() + interval * 2)
-          .attr('y', (d: any) => this.yScale(d.value) - interval)
-          .attr('height', (d: any) => Math.abs(this.yScale(d.value) - this.yScale(0)) + interval);
-
-        d3.select(this.labels._groups[0][i])
-          .transition()
-          .ease(d3.easeBounce)
-          .duration(150)
-          .attr('y', (d: any) => this.yScale(d.value) + (-5 - interval));
+         d3.select(arr[i]).style('stroke', 'black');
       }.bind(this))
       .on('mouseout', function(data, i, arr) {
         this.tooltip.style('display', 'none');
-
-        d3.select(arr[i])
-          .transition()
-          .ease(d3.easeBounce)
-          .duration(150)
-          .attr('x', (d: any) => this.xScale(d.name))
-          .attr('width', this.xScale.bandwidth())
-          .attr('y', (d: any) => this.yScale(d.value))
-          .attr('y', (d: any) => this.yScale(d.value))
-          .attr('height', (d: any) => Math.abs(this.yScale(d.value) - this.yScale(0)));
-
-        d3.select(this.labels._groups[0][i])
-          .transition()
-          .ease(d3.easeBounce)
-          .duration(150)
-          .style('color', 'black')
-          .attr('y', (d: any) => this.yScale(d.value) - 5);
+        d3.select(arr[i]).style('stroke', this.color(i));
       }.bind(this));
   }
 
