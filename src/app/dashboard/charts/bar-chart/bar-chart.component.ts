@@ -56,9 +56,7 @@ export class BarChartComponent implements OnInit {
 
     this.tooltip = d3.select('#bar-' + this.id)
       .append('div')
-      .attr('class', 'tooltip')
-      .style('display', 'none')
-      .style('opacity', 0);
+      .attr('class', 'tooltip');
   }
 
   private initSvg() {
@@ -103,8 +101,6 @@ export class BarChartComponent implements OnInit {
           .style('top', (d3.event.layerY + 15) + 'px')
           .style('left', (d3.event.layerX) + 'px')
           .style('display', 'block')
-          .style('opacity', 1)
-          .style('height', '60px')
           .html('name: ' + s.name + '<br>' +
             'value: ' + s.value + '<br>' +
             'share: ' + percent);
@@ -129,7 +125,6 @@ export class BarChartComponent implements OnInit {
       }.bind(this))
       .on('mouseout', function(data, i, arr) {
         this.tooltip.style('display', 'none');
-        this.tooltip.style('opacity', 0);
 
         d3.select(arr[i])
           .transition()

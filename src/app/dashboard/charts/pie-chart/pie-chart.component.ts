@@ -24,11 +24,15 @@ export class PieChartComponent implements OnInit {
   get width(): number { return 320; }
   radius: number;
   // Arcs & pie
-  private arc: any;  private pie: any;  private slices: any;
+  private arc: any;
+  private pie: any;
+  private slices: any;
   private color: any;
   // Drawing containers
-  private svg: any;  private mainContainer: any;
-  private tooltip: any;  private total: number;
+  private svg: any;
+  private mainContainer: any;
+  private tooltip: any;
+  private total: number;
   private arcLabel: any;
   private texts: any;
   // Data
@@ -50,9 +54,7 @@ export class PieChartComponent implements OnInit {
 
     this.tooltip = d3.select('#pie-' + this.id)
       .append('div')
-      .attr('class', 'tooltip')
-      .style('display', 'none')
-      .style('opacity', 0);
+      .attr('class', 'tooltip');
   }
   private resize() {
     this.setSVGDimensions();
@@ -108,12 +110,14 @@ export class PieChartComponent implements OnInit {
       .attr('fill', (d, i) => this.color(i))
       .on('mousemove', function(s) {
         const percent = (Math.abs(s.data.abs / this.total) * 100).toFixed(2) + '%';
-        this.tooltip.style('top', (d3.event.layerY + 15) + 'px').style('left', (d3.event.layerX + 15) + 'px')
-          .style('display', 'block').style('opacity', 1).style('height', '60px');
+        this.tooltip
+          .style('top', (d3.event.layerY + 15) + 'px')
+          .style('left', (d3.event.layerX + 320) + 'px')
+          .style('display', 'block');
         this.tooltip.html(`name: ${s.data.name}<br>value: ${s.data.value}<br>share: ${percent}`);
       }.bind(this))
       .on('mouseout', function() {
-        this.tooltip.style('display', 'none').style('opacity', 0);
+        this.tooltip.style('display', 'none');
       }.bind(this));
   }
 }

@@ -1,7 +1,8 @@
 div.tooltip {
     position:absolute;
-    text-align: center;
+    display: none;
     width: 80px;
+    height: 60px;
     padding: 5px;
     font-size: 12px;
     font-family: sans-serif;
@@ -9,7 +10,7 @@ div.tooltip {
     color: #FFF;
     border: 0;
     border-radius: 8px;
-    pointer-events: none;
     vertical-align: middle;
     z-index: 10;
+    opacity: 1;
   }
