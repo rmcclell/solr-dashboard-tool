@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material/material.module';
@@ -26,6 +27,7 @@ import { DisplayComponent } from './settings/display/display.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
