@@ -11,6 +11,10 @@
     </button>
 </mat-toolbar>
 <div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
     <mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDisableClear matSortDirection="asc">
         <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
             <mat-header-cell *matHeaderCellDef mat-sort-header> {{ formatColumnHeader(column) | titlecase}} </mat-header-cell>
