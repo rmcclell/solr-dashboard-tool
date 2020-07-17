@@ -50,30 +50,36 @@
             </button>
         </mat-card>
         <mat-card>
-            <mat-form-field class="example-chip-list" style="width:300px;display:block;">
-                <mat-chip-list #chipList aria-label="Fruit selection">
-                    <mat-chip *ngFor="let fruit of fruits" [selectable]="selectable" [removable]="removable"
-                        (removed)="remove(fruit)">
-                        {{fruit}}
-                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                    </mat-chip>
-                    <input placeholder="Fruit" #fruitInput [formControl]="fruitCtrl" [matAutocomplete]="auto"
-                        [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                        (matChipInputTokenEnd)="add($event)">
-                </mat-chip-list>
-                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-                    <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
-                        {{fruit}}
-                    </mat-option>
-                </mat-autocomplete>
-            </mat-form-field>
-            <mat-form-field>
-                <mat-label>Operator</mat-label>
-                <mat-select>
-                    <mat-option value="=">=</mat-option>
-                    <mat-option value="<>">&lt;&gt;</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </mat-card>
+            <form [formGroup]="criteriaForm">
+                <div *ngFor="let field of criteria" >
+                    <mat-form-field class="example-chip-list" style="width:300px;display:block;">
+                        <mat-chip-list #chipList aria-label="Field selection">
+                            <mat-chip *ngFor="let value of field.values" [selectable]="selectable" [removable]="removable"
+                                (removed)="remove(value)">
+                                {{value[0]}}
+                                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                            </mat-chip>
+                            <input [placeholder]="field.label" #fruitInput [formControlName]="field.label" [matAutocomplete]="auto"
+                                [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                (matChipInputTokenEnd)="add($event)">
+                        </mat-chip-list>
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                            <mat-option *ngFor="let value of field.values" [value]="value[0]">
+                                {{value[0]}}
+                            </mat-option>
+                        </mat-autocomplete>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Operator</mat-label>
+                        <mat-select>
+                            <mat-option value="=">=</mat-option>
+                            <mat-option value="<>">&lt;&gt;</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                
+    
+            </form>
+            </mat-card>
     </mat-expansion-panel>
 </mat-accordion>
