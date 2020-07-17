@@ -3,8 +3,8 @@ import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { Observable, of } from 'rxjs';
-import { startWith, map, mergeMap, tap, mergeAll } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -35,7 +35,19 @@ export class CriteriaComponent implements OnInit {
          map(data => data.facet_counts.facet_fields ),
          map(data => Object.keys(data).map(k => { return new Object({ label: k, values: data[k] }) } ))
         )
-        .subscribe(data => { this.criteria = data; console.log(this.criteria); return this.criteria; });
+        .subscribe(data => {
+          this.criteria = data;
+          console.log(this.criteria);
+          let formControlGroup = {}
+          for(let x = 0; x < this.criteria.length; x++) {
+            formControlGroup[this.criteria[x].label] = new FormControl([]);
+            
+          }
+
+          this.criteriaForm = new FormGroup(formControlGroup);
+
+          return this.criteria;
+        });
 
   }
   panelOpenState = true;
@@ -44,35 +56,26 @@ export class CriteriaComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true
-  criteriaForm: FormGroup = this.fb.group({
-    bodyType: [''],
-    breed: [''],
-    coat: [''],
-    country: [''],
-    id: [''],
-    origin: [''],
-    pattern: ['']
-  });
+  criteriaForm: FormGroup;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   filteredFruits: Observable<string[]>;
   criteria = [];
   fruits: string[] = ['Lemon'];
   allFruits: string[] = ['Apple', 'Lemon', 'Lime', 'Orange', 'Strawberry'];
 
-  @ViewChild('fruitInput') fruitInput: ElementRef<HTMLInputElement>;
-  @ViewChild('auto') matAutocomplete: MatAutocomplete;
+    @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
   ngOnInit(): void {
-    
   }
 
-  add(event: MatChipInputEvent): void {
+  add(event: MatChipInputEvent, field: string): void {
     const input = event.input;
     const value = event.value;
+    const control = this.criteriaForm.controls[field];
 
-    // Add our fruit
+    // Add item to criteria
     if ((value || '').trim()) {
-      this.fruits.push(value.trim());
+      control.value.push(value.trim());
     }
 
     // Reset the input value
@@ -80,22 +83,21 @@ export class CriteriaComponent implements OnInit {
       input.value = '';
     }
 
-    this.fruitCtrl.setValue(null);
+    control.setValue(null);
   }
 
-  remove(fruit: string): void {
-    debugger;
-    const index = this.fruits.indexOf(fruit);
-
-    if (index >= 0) {
-      this.fruits.splice(index, 1);
+  remove(val: string, field: string): void {
+    const control = this.criteriaForm.controls[field];
+    let index = control.value.indexOf(val, 0);
+    if (index > -1) {
+      control.value.splice(index, 1);
     }
+    control.markAsDirty();
   }
 
-  selected(event: MatAutocompleteSelectedEvent): void {
-    this.fruits.push(event.option.viewValue);
-    this.fruitInput.nativeElement.value = '';
-    this.fruitCtrl.setValue(null);
+  selected(event: MatAutocompleteSelectedEvent, field: string): void {
+    const control = this.criteriaForm.controls[field];
+    control.value.push(event.option.viewValue);
   }
 
   private _filter(value: string): string[] {

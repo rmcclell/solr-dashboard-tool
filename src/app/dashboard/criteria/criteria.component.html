@@ -53,17 +53,17 @@
             <form [formGroup]="criteriaForm">
                 <div *ngFor="let field of criteria" >
                     <mat-form-field class="example-chip-list" style="width:300px;display:block;">
-                        <mat-chip-list #chipList aria-label="Field selection">
-                            <mat-chip *ngFor="let value of field.values" [selectable]="selectable" [removable]="removable"
-                                (removed)="remove(value)">
-                                {{value[0]}}
+                        <mat-chip-list #chipList aria-label="Field selection" [formControlName]="field.label">
+                            <mat-chip *ngFor="let value of criteriaForm.controls[field.label].value" [selectable]="selectable" [removable]="removable"
+                                (removed)="remove(value,field.label)">
+                                {{value}}
                                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                             </mat-chip>
-                            <input [placeholder]="field.label" #fruitInput [formControlName]="field.label" [matAutocomplete]="auto"
+                            <input [placeholder]="field.label" [matAutocomplete]="auto"
                                 [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                                (matChipInputTokenEnd)="add($event)">
+                                (matChipInputTokenEnd)="add($event, field.label)">
                         </mat-chip-list>
-                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event, field.label)">
                             <mat-option *ngFor="let value of field.values" [value]="value[0]">
                                 {{value[0]}}
                             </mat-option>
