@@ -51,7 +51,7 @@
         </mat-card>
         <mat-card>
             <form [formGroup]="criteriaForm">
-                <div *ngFor="let field of criteria">
+                <div *ngFor="let field of criteria" fxLayoutGap="10px">
                     <mat-form-field class="example-chip-list" fxFlex="75">
                         <mat-chip-list #chipList aria-label="Field selection" [formControlName]="field.label">
                             <mat-chip *ngFor="let value of criteriaForm.controls[field.label].value"
