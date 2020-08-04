@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { TitleCasePipe } from '@angular/common';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { ENTER, COMMA } from '@angular/cdk/keycodes';
@@ -26,7 +27,7 @@ export interface Item {
 })
 export class CriteriaComponent implements OnInit {
 
-  constructor(private _httpClient: HttpClient, private fb: FormBuilder) {
+  constructor(private _httpClient: HttpClient, private fb: FormBuilder, private _titleCasePipe: TitleCasePipe) {
 
       this.solrData = new SolrHttpIndex(this._httpClient);
     
@@ -84,6 +85,10 @@ export class CriteriaComponent implements OnInit {
     }
 
     control.setValue(null);
+  }
+
+  formatLabel(header: string) {
+    return this._titleCasePipe.transform(header.split(/(?=[A-Z])/).join(' '));
   }
 
   remove(val: string, field: string): void {

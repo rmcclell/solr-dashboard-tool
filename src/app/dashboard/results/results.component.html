@@ -17,7 +17,7 @@
     </div>
     <mat-table [dataSource]="dataSource" matSort matSortActive="id" matSortDisableClear matSortDirection="asc">
         <ng-container [matColumnDef]="column" *ngFor="let column of displayedColumns">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> {{ formatColumnHeader(column) | titlecase}} </mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header> {{ formatColumnHeader(column) }} </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element[column]}} </mat-cell>
         </ng-container>
         <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>

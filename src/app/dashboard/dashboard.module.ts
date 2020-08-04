@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { MaterialModule } from '../material/material.module';
@@ -22,6 +22,9 @@ import { CriteriaComponent } from './criteria/criteria.component';
     ReactiveFormsModule,
     DashboardRoutingModule,
     MaterialModule
+  ],
+  providers: [
+    TitleCasePipe
   ],
   entryComponents: [
     PieChartComponent, BarChartComponent

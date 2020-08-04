@@ -1,7 +1,9 @@
 import {HttpClient} from '@angular/common/http';
 import { Component, AfterViewInit, OnInit, ViewChild } from '@angular/core';
+import { TitleCasePipe } from '@angular/common';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
+
 
 import { saveAs } from 'file-saver';
 import {merge, Observable, of as observableOf} from 'rxjs';
@@ -29,7 +31,7 @@ export class ResultsComponent implements OnInit, AfterViewInit  {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private _httpClient: HttpClient) { }
+  constructor(private _httpClient: HttpClient, private _titleCasePipe: TitleCasePipe) { }
 
   ngOnInit(): void {
     this.solrData = new SolrHttpIndex(this._httpClient);
@@ -62,7 +64,7 @@ export class ResultsComponent implements OnInit, AfterViewInit  {
       ).subscribe(data => this.dataSource = data);
   }
   formatColumnHeader(header: string) {
-    return header.split(/(?=[A-Z])/).join(' ');
+    return this._titleCasePipe.transform(header.split(/(?=[A-Z])/).join(' '));
   }
   exportResults() {
     this.solrData.getExport(this.sort.active, this.sort.direction, this.displayedColumns.join(',')).subscribe(function(data){

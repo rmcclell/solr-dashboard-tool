@@ -51,15 +51,15 @@
         </mat-card>
         <mat-card>
             <form [formGroup]="criteriaForm">
-                <div *ngFor="let field of criteria" >
-                    <mat-form-field class="example-chip-list" style="width:300px;display:block;">
+                <div *ngFor="let field of criteria">
+                    <mat-form-field class="example-chip-list" fxFlex="75">
                         <mat-chip-list #chipList aria-label="Field selection" [formControlName]="field.label">
-                            <mat-chip *ngFor="let value of criteriaForm.controls[field.label].value" [selectable]="selectable" [removable]="removable"
-                                (removed)="remove(value,field.label)">
+                            <mat-chip *ngFor="let value of criteriaForm.controls[field.label].value"
+                                [selectable]="selectable" [removable]="removable" (removed)="remove(value,field.label)">
                                 {{value}}
                                 <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
                             </mat-chip>
-                            <input [placeholder]="field.label" [matAutocomplete]="auto"
+                            <input [placeholder]="formatLabel(field.label)" [matAutocomplete]="auto"
                                 [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
                                 (matChipInputTokenEnd)="add($event, field.label)">
                         </mat-chip-list>
@@ -69,7 +69,7 @@
                             </mat-option>
                         </mat-autocomplete>
                     </mat-form-field>
-                    <mat-form-field>
+                    <mat-form-field fxFlex="25">
                         <mat-label>Operator</mat-label>
                         <mat-select>
                             <mat-option value="=">=</mat-option>
@@ -77,9 +77,7 @@
                         </mat-select>
                     </mat-form-field>
                 </div>
-                
-    
             </form>
-            </mat-card>
+        </mat-card>
     </mat-expansion-panel>
 </mat-accordion>
