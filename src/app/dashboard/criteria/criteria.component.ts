@@ -38,7 +38,6 @@ export class CriteriaComponent implements OnInit {
         )
         .subscribe(data => {
           this.criteria = data;
-          console.log(this.criteria);
           let formControlGroup = {}
           for(let x = 0; x < this.criteria.length; x++) {
             formControlGroup[this.criteria[x].label] = new FormControl([]);
@@ -57,7 +56,7 @@ export class CriteriaComponent implements OnInit {
   selectable = true;
   removable = true;
   addOnBlur = true
-  criteriaForm: FormGroup;
+  criteriaForm: FormGroup = new FormGroup({});
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   filteredFruits: Observable<string[]>;
   criteria = [];

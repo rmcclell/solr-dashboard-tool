@@ -32,24 +32,26 @@
             </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-card>
-            <mat-form-field>
-                <mat-label>Saved User Filters</mat-label>
-                <mat-select>
-                    <mat-option value="Filter 1">Filter 1</mat-option>
-                    <mat-option value="Filter 2">Filter 2</mat-option>
-                </mat-select>
-            </mat-form-field>
-            <button mat-icon-button matTooltip="Save Filters Preset">
-                <mat-icon>add_box</mat-icon>
-            </button>
-            <button mat-icon-button matTooltip="Rename Filter Preset">
-                <mat-icon>create</mat-icon>
-            </button>
-            <button mat-icon-button matTooltip="Delete Filter Preset">
-                <mat-icon>delete</mat-icon>
-            </button>
-        </mat-card>
-        <mat-card>
+            <form fxFill  fxLayoutGap="5px">
+                <mat-form-field fxFlex="65">
+                    <mat-label>Saved User Filters</mat-label>
+                    <mat-select>
+                        <mat-option value="Filter 1">Filter 1</mat-option>
+                        <mat-option value="Filter 2">Filter 2</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div fxFlex="35">
+                    <button mat-icon-button matTooltip="Save Filters Preset">
+                        <mat-icon>add_box</mat-icon>
+                    </button>
+                    <button mat-icon-button matTooltip="Rename Filter Preset">
+                        <mat-icon>create</mat-icon>
+                    </button>
+                    <button mat-icon-button matTooltip="Delete Filter Preset">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </form>
             <form [formGroup]="criteriaForm">
                 <div *ngFor="let field of criteria" fxLayoutGap="10px">
                     <mat-form-field class="example-chip-list" fxFlex="75">
