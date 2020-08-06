@@ -35,13 +35,21 @@
       </button>
     </mat-cell>
   </ng-container>
-  <ng-container matColumnDef="position">
-    <mat-header-cell cdkDrag *matHeaderCellDef> No. </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+  <ng-container matColumnDef="active">
+    <mat-header-cell cdkDrag *matHeaderCellDef> Active </mat-header-cell>
+    <mat-cell *matCellDef="let element"> <mat-checkbox class="example-margin" [checked]="element.active"></mat-checkbox> </mat-cell>
   </ng-container>
-  <ng-container matColumnDef="name">
-    <mat-header-cell cdkDrag *matHeaderCellDef> Name </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+  <ng-container matColumnDef="default">
+    <mat-header-cell cdkDrag *matHeaderCellDef> Default </mat-header-cell>
+    <mat-cell *matCellDef="let element"> <mat-checkbox class="example-margin" [checked]="element.default"></mat-checkbox> </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="title">
+    <mat-header-cell cdkDrag *matHeaderCellDef> Title </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="description">
+    <mat-header-cell cdkDrag *matHeaderCellDef> Description </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
   </ng-container>
   <ng-container matColumnDef="weight">
     <mat-header-cell cdkDrag *matHeaderCellDef> Weight </mat-header-cell>
@@ -51,6 +59,15 @@
     <mat-header-cell cdkDrag *matHeaderCellDef> Symbol </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
   </ng-container>
+  <ng-container matColumnDef="created">
+    <mat-header-cell cdkDrag *matHeaderCellDef> Created </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.created | date : 'short'}} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="modified">
+    <mat-header-cell cdkDrag *matHeaderCellDef> Modified </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.modified | date : 'short'}} </mat-cell>
+  </ng-container>
+
   <mat-header-row *matHeaderRowDef="columns; sticky: true"></mat-header-row>
   <mat-row *matRowDef="let row; columns: columns;"></mat-row>
 </mat-table>
