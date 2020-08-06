@@ -8,14 +8,12 @@ export interface DashboardConfig {
   title: string;
   active: boolean;
   default: boolean;
-  weight: number;
-  symbol: string;
   created: Date;
   modified: Date;
 }
 
 const DATA: DashboardConfig[] = [
-  {active: true, default: true, title: 'Cats', description: 'Hydrogen', weight: 1.0079, symbol: 'H', created: new Date(), modified: new Date() }
+  {active: true, default: true, title: 'Cats', description: 'Hydrogen', created: new Date(), modified: new Date() }
 ];
 
 @Component({
@@ -25,7 +23,7 @@ const DATA: DashboardConfig[] = [
 })
 export class AdminComponent implements OnInit {
 
-  columns: string[] = ['actions', 'active', 'default', 'title', 'description', 'weight', 'symbol', 'created', 'modified'];
+  columns: string[] = ['actions', 'active', 'default', 'title', 'description', 'created', 'modified'];
   dataSource = new MatTableDataSource(DATA);
 
   drop(event: CdkDragDrop<string[]>) {
