@@ -8,17 +8,26 @@ export interface PeriodicElement {
   symbol: string;
 }
 
+export interface Filter {
+  operator: string;
+  condition: number;
+  fieldLabel: string;
+  fieldName: string;
+  criteria: string;
+  filterType: string;
+  from: string;
+  to: string;
+  value: string;
+}
+
+const FILTER_DATA: Filter[] = [
+  {condition: 1, operator: 'Hydrogen', fieldLabel: '1.0079', fieldName: 'H', criteria: '', filterType:'', from:'', to:'', value:''},
+  {condition: 2, operator: 'Helium', fieldLabel: '4.0026', fieldName: 'He', criteria: '', filterType:'', from:'', to:'', value:''}
+];
+
 const ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
+  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'}
 ];
 
 @Component({
@@ -33,8 +42,12 @@ export class CreateComponent implements OnInit {
   forthFormGroup: FormGroup;
   isEditable: boolean = true;
 
-  displayedColumns = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns1 = ['actions', 'condition', 'operator', 'fieldLabel', 'fieldName', 'criteria', 'filterType', 'from', 'to', 'value']
+  displayedColumns2 = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns3 = ['position', 'name', 'weight', 'symbol'];
+  displayedColumns4 = ['position', 'name', 'weight', 'symbol'];
+
+  dataSource = FILTER_DATA;
   dataSource2 = ELEMENT_DATA;
   dataSource3 = ELEMENT_DATA;
   dataSource4 = ELEMENT_DATA;

@@ -54,28 +54,55 @@
             </mat-toolbar>
             <div class="example-container mat-elevation-z8">
                 <mat-table [dataSource]="dataSource">
-                    <!-- Position Column -->
-                    <ng-container matColumnDef="position">
-                        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    <ng-container matColumnDef="actions">
+                        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <button mat-icon-button aria-label="">
+                            <mat-icon>delete</mat-icon>
+                            </button>
+                            <button mat-icon-button aria-label="">
+                            <mat-icon>create</mat-icon>
+                            </button>
+                    </mat-cell>
                     </ng-container>
-                    <!-- Name Column -->
-                    <ng-container matColumnDef="name">
-                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                    <ng-container matColumnDef="condition">
+                        <mat-header-cell *matHeaderCellDef> Condition </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.condition}} </mat-cell>
                     </ng-container>
-                    <!-- Weight Column -->
-                    <ng-container matColumnDef="weight">
-                        <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+                    <ng-container matColumnDef="operator">
+                        <mat-header-cell *matHeaderCellDef> Operator </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.operator}} </mat-cell>
                     </ng-container>
-                    <!-- Symbol Column -->
-                    <ng-container matColumnDef="symbol">
-                        <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+                    <ng-container matColumnDef="fieldLabel">
+                        <mat-header-cell *matHeaderCellDef> Field Label </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.fieldLabel}} </mat-cell>
                     </ng-container>
-                    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    <ng-container matColumnDef="fieldName">
+                        <mat-header-cell *matHeaderCellDef> Field Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.fieldName}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="criteria">
+                        <mat-header-cell *matHeaderCellDef> Criteria </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.criteria}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="filterType">
+                        <mat-header-cell *matHeaderCellDef> Filter Type </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.filterType}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="from">
+                        <mat-header-cell *matHeaderCellDef> From </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.from}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="to">
+                        <mat-header-cell *matHeaderCellDef> To </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.to}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="value">
+                        <mat-header-cell *matHeaderCellDef> Value </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.value}} </mat-cell>
+                    </ng-container>
+                    <mat-header-row *matHeaderRowDef="displayedColumns1; sticky: true"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row>
                 </mat-table>
             </div>
             <mat-toolbar>
@@ -104,8 +131,8 @@
                         <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
                     </ng-container>
-                    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    <mat-header-row *matHeaderRowDef="displayedColumns2; sticky: true"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
                 </mat-table>
             </div>
             <mat-toolbar>
@@ -158,8 +185,8 @@
                         <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
                     </ng-container>
-                    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    <mat-header-row *matHeaderRowDef="displayedColumns3; sticky: true"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns3;"></mat-row>
                 </mat-table>
             </div>
             <mat-toolbar>
@@ -213,8 +240,8 @@
                         <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
                     </ng-container>
-                    <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
-                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    <mat-header-row *matHeaderRowDef="displayedColumns4; sticky: true"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns4;"></mat-row>
                 </mat-table>
             </div>
             <mat-toolbar>
