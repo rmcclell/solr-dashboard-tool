@@ -51,14 +51,6 @@
     <mat-header-cell cdkDrag *matHeaderCellDef> Description </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
   </ng-container>
-  <ng-container matColumnDef="weight">
-    <mat-header-cell cdkDrag *matHeaderCellDef> Weight </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-  </ng-container>
-  <ng-container matColumnDef="symbol">
-    <mat-header-cell cdkDrag *matHeaderCellDef> Symbol </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-  </ng-container>
   <ng-container matColumnDef="created">
     <mat-header-cell cdkDrag *matHeaderCellDef> Created </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.created | date : 'short'}} </mat-cell>
