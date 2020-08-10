@@ -114,7 +114,7 @@ export class PieChartComponent implements OnInit {
           .style('top', (d3.event.layerY + 15) + 'px')
           .style('left', (d3.event.layerX) + 'px')
           .style('display', 'block');
-        this.tooltip.html(`name: ${s.data.name}<br>value: ${s.data.value}<br>share: ${percent}`);
+        this.tooltip.html(`Name: ${s.data.name}<br>Value: ${s.data.value}<br>Share: ${percent}`);
       }.bind(this))
       .on('mouseover', function(data, i, arr) {
          d3.select(arr[i]).style('stroke', 'black');

@@ -101,7 +101,7 @@ export class BarChartComponent implements OnInit {
           .style('top', (d3.event.layerY + 15) + 'px')
           .style('left', (d3.event.layerX + 15) + 'px')
           .style('display', 'block');
-        this.tooltip.html(`name: ${s.name}<br>value: ${s.value}<br>share: ${percent}`);
+        this.tooltip.html(`Name: ${s.name}<br>Value: ${s.value}<br>Share: ${percent}`);
       }.bind(this))
       .on('mouseover', function(data, i, arr) {
          d3.select(arr[i]).style('stroke', 'black');
