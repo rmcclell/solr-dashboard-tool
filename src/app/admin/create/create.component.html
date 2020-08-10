@@ -36,9 +36,7 @@
             </mat-toolbar>
         </form>
     </mat-step>
-    <!--<mat-step [stepControl]="secondFormGroup" [editable]="isEditable">-->
     <mat-step>
-        <!--<form [formGroup]="secondFormGroup">-->
             <ng-template matStepLabel>Filters</ng-template>
             <h3>
                 Add filtering criteria to customize your dashboard. This will allow you to show only the order you want
@@ -146,11 +144,8 @@
                     <mat-icon>navigate_next</mat-icon>
                 </button>
             </mat-toolbar>
-        <!--</form>-->
     </mat-step>
-    <!--<mat-step [stepControl]="thirdFormGroup" [editable]="isEditable">-->
     <mat-step>
-        <!--<form [formGroup]="thirdFormGroup">-->
             <ng-template matStepLabel>Charts</ng-template>
             <h3>
                 Add Charts to visualize your filter Results.
@@ -165,25 +160,52 @@
             </mat-toolbar>
             <div class="example-container3 mat-elevation-z8">
                 <mat-table [dataSource]="dataSource3">
-                    <!-- Position Column -->
-                    <ng-container matColumnDef="position">
-                        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    <ng-container matColumnDef="actions">
+                        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <button mat-icon-button aria-label="">
+                            <mat-icon>delete</mat-icon>
+                            </button>
+                            <button mat-icon-button aria-label="">
+                            <mat-icon>create</mat-icon>
+                            </button>
+                    </mat-cell>
                     </ng-container>
-                    <!-- Name Column -->
-                    <ng-container matColumnDef="name">
-                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                    <ng-container matColumnDef="type">
+                        <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.type}} </mat-cell>
                     </ng-container>
-                    <!-- Weight Column -->
-                    <ng-container matColumnDef="weight">
-                        <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+                    <ng-container matColumnDef="dataSource">
+                        <mat-header-cell *matHeaderCellDef> Data Source </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.dataSource}} </mat-cell>
                     </ng-container>
-                    <!-- Symbol Column -->
-                    <ng-container matColumnDef="symbol">
-                        <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+                    <ng-container matColumnDef="fieldLabel">
+                        <mat-header-cell *matHeaderCellDef> Field Label </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.fieldLabel}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="fieldName">
+                        <mat-header-cell *matHeaderCellDef> Field Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.fieldName}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="title">
+                        <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="facetQuery">
+                        <mat-header-cell *matHeaderCellDef> Facet Query</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.facetQuery}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="facetField">
+                        <mat-header-cell *matHeaderCellDef> Facet Field </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.facetField}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="seriesData">
+                        <mat-header-cell *matHeaderCellDef> Series Data </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.seriesData}} </mat-cell>
                     </ng-container>
                     <mat-header-row *matHeaderRowDef="displayedColumns3; sticky: true"></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns3;"></mat-row>
@@ -200,11 +222,8 @@
                     <mat-icon>navigate_next</mat-icon>
                 </button>
             </mat-toolbar>
-        <!--</form>-->
     </mat-step>
-    <!--<mat-step [stepControl]="forthFormGroup" [editable]="isEditable">-->
     <mat-step [stepControl]="forthFormGroup" [editable]="isEditable">
-        <!--<form [formGroup]="forthFormGroup">-->
             <ng-template matStepLabel>User Criteria</ng-template>
             <h3>
                 Select additional filtering options to appear on your dashboard. This will allow you to further refine
@@ -220,25 +239,24 @@
             </mat-toolbar>
             <div class="example-container4 mat-elevation-z8">
                 <mat-table [dataSource]="dataSource4">
-                    <!-- Position Column -->
-                    <ng-container matColumnDef="position">
-                        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                    <ng-container matColumnDef="actions">
+                        <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <button mat-icon-button aria-label="">
+                            <mat-icon>delete</mat-icon>
+                            </button>
+                            <button mat-icon-button aria-label="">
+                            <mat-icon>create</mat-icon>
+                            </button>
+                    </mat-cell>
                     </ng-container>
-                    <!-- Name Column -->
-                    <ng-container matColumnDef="name">
-                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                    <ng-container matColumnDef="fieldLabel">
+                        <mat-header-cell *matHeaderCellDef> Field Label </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.fieldLabel}} </mat-cell>
                     </ng-container>
-                    <!-- Weight Column -->
-                    <ng-container matColumnDef="weight">
-                        <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
-                    </ng-container>
-                    <!-- Symbol Column -->
-                    <ng-container matColumnDef="symbol">
-                        <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+                    <ng-container matColumnDef="fieldName">
+                        <mat-header-cell *matHeaderCellDef> Field Name </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.fieldName}} </mat-cell>
                     </ng-container>
                     <mat-header-row *matHeaderRowDef="displayedColumns4; sticky: true"></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns4;"></mat-row>
@@ -255,7 +273,6 @@
                     <mat-icon>navigate_next</mat-icon>
                 </button>
             </mat-toolbar>
-        <!--</form>-->
     </mat-step>
     <mat-step>
         <ng-template matStepLabel>Save</ng-template>
