@@ -4,7 +4,9 @@ Solr Dashboard Tool
 ## Introduction
 This tool is designed to allow users to create a visual based dashboard of solr indexes. The dashboard configuration tool uses a wizard style UI to create dashboards that configuration data it stored within the browser local storage. Users can point to different indexes on different domains. Facet based data can be disected to product chart with drill down approach.  
 
-![Alt text](solr-dashboard-tool/dashboard.png?raw=true "Dashboard Screenshot")
+
+
+![Dashboard Screenshot](dashboard.png)
 
 ## Goals of Project
 This is standalone tool to provide custom visual dashboards of solr index with Sencha ExtJs
