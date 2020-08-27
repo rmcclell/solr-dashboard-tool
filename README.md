@@ -10,7 +10,7 @@ This tool is designed to allow users to create a visual based dashboard of solr 
 
 ## Goals of Project
 
-This is standalone tool to provide custom visual dashboards of solr index with Sencha ExtJs
+This is standalone tool to provide custom visual dashboards of solr index with Material Angular and Angular CLI
 
 ## Prerequisites
 - Cross Domain access via CORS or some other method to each of the index domains or app must be hosted on same domain
